@@ -1,6 +1,6 @@
 #include "battery.h"
-#include "driver/adc.h"
-#include "esp_log.h"
+#include <driver/adc.h>
+#include <esp_log.h>
 
 static const char *TAG = "battery";
 static int s_battery_percent = 0;

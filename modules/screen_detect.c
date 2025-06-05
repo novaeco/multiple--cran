@@ -1,7 +1,7 @@
 #include "screen_detect.h"
 #include "i2c_driver.h"
-#include "esp_log.h"
-#include "lvgl.h"
+#include <esp_log.h>
+#include <lvgl.h>
 #include <driver/gpio.h>
 #include <stdbool.h>
 

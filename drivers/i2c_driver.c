@@ -1,5 +1,5 @@
 #include "i2c_driver.h"
-
+#include <esp_log.h>
 #include "esp_log.h"
 #include <driver/gpio.h>
 #include "freertos/FreeRTOS.h"

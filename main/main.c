@@ -8,7 +8,7 @@
 #include "sd_card.h"
 #include "battery.h"
 #include "ui.h"
-#include "lvgl.h"
+#include <lvgl.h>
 #include "esp_timer.h"
 #include <string.h>
 #include <stdlib.h>
