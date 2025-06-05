@@ -15,6 +15,7 @@ if [ -z "$IDF_PATH" ]; then
   git clone --depth 1 https://github.com/espressif/esp-idf.git "$HOME/esp-idf"
   export IDF_PATH="$HOME/esp-idf"
 
+
   "$IDF_PATH/install.sh"
 fi
 
