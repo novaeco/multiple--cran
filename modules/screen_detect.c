@@ -2,6 +2,8 @@
 #include "i2c_driver.h"
 #include "esp_log.h"
 #include "lvgl.h"
+#include <driver/gpio.h>
+#include <stdbool.h>
 
 static const char *TAG = "screen";
 static int s_width = 800;
