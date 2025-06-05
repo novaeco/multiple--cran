@@ -10,7 +10,4 @@ void can_driver_init(void) {
     ESP_ERROR_CHECK(twai_start());
     ESP_LOGI("can", "Bus CAN initialisé");
 
-void can_driver_init(void) {
-    // TODO: implémenter l'initialisation du bus CAN
-
 }

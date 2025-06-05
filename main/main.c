@@ -25,6 +25,7 @@ static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *colo
     }
 
 
+
 static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
 {
     int32_t w = area->x2 - area->x1 + 1;
@@ -32,6 +33,7 @@ static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *colo
         memcpy(&lcd_buffer[y * drv->hor_res + area->x1], color_p, w * sizeof(lv_color_t));
         color_p += w;
     }
+
     lv_disp_flush_ready(drv);
 }
 
@@ -43,6 +45,9 @@ void app_main(void) {
     uart_driver_init(UART_NUM_0, 1, 3, 115200);
     wifi_driver_init();
     wifi_driver_connect(NULL, NULL);
+
+
+
 
     i2c_driver_init(I2C_NUM_0, 6, 7, 400000);
     ble_driver_init();
@@ -56,6 +61,7 @@ void app_main(void) {
     uart_driver_init(UART_NUM_0, 1, 3, 115200);
     wifi_driver_init();
     ble_driver_init();
+
 
     i2c_driver_scan(I2C_NUM_0);
     can_driver_init();

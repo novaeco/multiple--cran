@@ -69,7 +69,6 @@ void wifi_driver_connect(void) {
     } else if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
 
     if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
-
         size_t len = sizeof(ssid);
         nvs_get_str(handle, "ssid", ssid, &len);
         len = sizeof(pass);
@@ -107,11 +106,11 @@ void wifi_driver_connect(void) {
     if (err != ESP_OK) return err;
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
     return ESP_OK;
+}
     ESP_ERROR_CHECK(esp_wifi_connect());
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
 
 
 void wifi_driver_init(void) {
     // TODO: implémenter la configuration Wi-Fi STA et le scan
-
 

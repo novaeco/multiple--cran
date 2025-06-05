@@ -5,7 +5,3 @@ void battery_update(void);
 
 // Retourne le niveau de batterie en pourcentage (0-100)
 int battery_get_percent(void);
-
-// Affichage du niveau de batterie
-void battery_update(void);
-

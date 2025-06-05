@@ -35,6 +35,7 @@ Ce projet est distribué sous licence MIT. Consultez le fichier `LICENSE` pour p
 - Utilisez un message court et impératif décrivant la modification.
 - Ajoutez des explications plus longues dans le corps du message si nécessaire.
 
+
 Ce projet fournit une structure de base modulaire compatible avec les écrans Waveshare 5B (1024x600) et 7 (800x480) équipés d'un contrôleur tactile GT911.
 
 ## Compilation et flashage
@@ -70,3 +71,4 @@ Ce projet est distribué sous licence MIT. Consultez le fichier `LICENSE` pour p
 
 - Utilisez un message court et impératif décrivant la modification.
 - Ajoutez des explications plus longues dans le corps du message si nécessaire.
+

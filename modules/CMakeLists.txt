@@ -3,4 +3,4 @@ idf_component_register(SRCS
     "sd_card.c"
     "battery.c"
     INCLUDE_DIRS "."
-    REQUIRES drivers lvgl esp_vfs_fat sdmmc wear_levelling)
+    REQUIRES drivers lvgl fatfs sdmmc wear_levelling)
