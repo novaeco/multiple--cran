@@ -10,6 +10,19 @@
 #include "ui.h"
 #include "lvgl.h"
 #include "esp_timer.h"
+#include <string.h>
+#include <stdlib.h>
+
+// Tampon simulant le framebuffer LCD
+static lv_color_t *lcd_buffer;
+
+static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
+{
+    int32_t w = area->x2 - area->x1 + 1;
+    for (int y = area->y1; y <= area->y2; y++) {
+        memcpy(&lcd_buffer[y * drv->hor_res + area->x1], color_p, w * sizeof(lv_color_t));
+        color_p += w;
+    }
 
 static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -24,6 +37,9 @@ void app_main(void) {
     // Initialisation des pilotes
     uart_driver_init(UART_NUM_0, 1, 3, 115200);
     wifi_driver_init();
+    wifi_driver_connect(NULL, NULL);
+    ble_driver_init();
+    i2c_driver_init(I2C_NUM_0, 6, 7, 400000);
     wifi_driver_connect();
 
 void app_main(void) {
@@ -37,6 +53,8 @@ void app_main(void) {
 
     // Modules
     screen_detect_init();
+    size_t buf_size = screen_get_width() * screen_get_height() * sizeof(lv_color_t);
+    lcd_buffer = malloc(buf_size);
 
     // Configuration simple du driver d'affichage
     static lv_disp_draw_buf_t draw_buf;

@@ -2,6 +2,8 @@
 #include "i2c_driver.h"
 #include "esp_log.h"
 #include "lvgl.h"
+#include <driver/gpio.h>
+#include <stdbool.h>
 
 static const char *TAG = "screen";
 static int s_width = 800;
@@ -29,7 +31,6 @@ int screen_get_width(void) {
 
 int screen_get_height(void) {
     return s_height;
-
 void screen_detect_init(void) {
     // TODO: implémenter la détection d'écran et l'initialisation LVGL
 }
