@@ -19,3 +19,6 @@ idf_component_register(SRCS ${srcs}
     INCLUDE_DIRS "." "${IDF_PATH}/components/bt/host/bluedroid/api/include/api"
     REQUIRES ${requires}
     PRIV_REQUIRES ${priv_requires})
+endif()
+
+i
