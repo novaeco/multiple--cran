@@ -57,7 +57,7 @@ esp_err_t list_add_after(list_t * list, list_item_t * after, void *item, uint32_
 	assert(list != NULL);
 
 	/* Create list item */
-	list_item = calloc(sizeof(list_item_t), 1);
+        list_item = calloc(1, sizeof(list_item_t));
 	if(list_item == NULL)
 		return ESP_ERR_NO_MEM;
 
@@ -127,7 +127,7 @@ esp_err_t list_add_before(list_t * list, list_item_t * before, void *item, uint3
 	assert(list != NULL);
 
 	/* Create list item */
-	list_item = calloc(sizeof(list_item_t), 1);
+        list_item = calloc(1, sizeof(list_item_t));
 	if(list_item == NULL)
 		return ESP_ERR_NO_MEM;
 
@@ -200,7 +200,7 @@ esp_err_t list_add(list_t * list, void *item, uint32_t size)
 	assert(list != NULL);
 
 	/* Create list item */
-	list_item = calloc(sizeof(list_item_t), 1);
+        list_item = calloc(1, sizeof(list_item_t));
 	if(list_item == NULL)
 		return ESP_ERR_NO_MEM;
 
