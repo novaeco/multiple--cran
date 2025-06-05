@@ -12,6 +12,8 @@
 #define BOARD_TYPE_HMI      1   /* ESP32-S2-HMI-DevKit-1 */
 #define BOARD_TYPE_ESPBOX   2   /* ESP_BOX */
 #define BOARD_TYPE_CUSTOM   3   /* Custom board - multiple display example */
+#define BOARD_TYPE_WS_LCD_5B 4   /* Waveshare ESP32-S3-Touch-LCD-5B */
+#define BOARD_TYPE_WS_LCD_7  5   /* Waveshare ESP32-S3-Touch-LCD-7 */
 
 /* DISPLAY TOUCH TYPES */
 #define BOARD_DISP_TOUCH_GT911      1
@@ -36,4 +38,8 @@
     #include "board_espbox.h"
 #elif (BOARD_TYPE == BOARD_TYPE_CUSTOM)
     #include "board_custom.h"
+#elif (BOARD_TYPE == BOARD_TYPE_WS_LCD_5B)
+    #include "board_ws_lcd_5b.h"
+#elif (BOARD_TYPE == BOARD_TYPE_WS_LCD_7)
+    #include "board_ws_lcd_7.h"
 #endif
