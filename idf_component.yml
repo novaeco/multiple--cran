@@ -1,3 +1,4 @@
 dependencies:
   espressif/lvgl: ^8
   lvgl/lvgl: ==8.*
+
