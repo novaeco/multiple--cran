@@ -8,6 +8,23 @@
 #include "sd_card.h"
 #include "battery.h"
 #include "ui.h"
+#include "lvgl.h"
+#include "esp_timer.h"
+
+static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
+{
+    /* TODO: transmettre le tampon au contrôleur LCD */
+    lv_disp_flush_ready(drv);
+}
+
+void app_main(void) {
+    // Initialisation LVGL
+    lv_init();
+
+    // Initialisation des pilotes
+    uart_driver_init(UART_NUM_0, 1, 3, 115200);
+    wifi_driver_init();
+    wifi_driver_connect();
 
 void app_main(void) {
     // Initialisation des pilotes
@@ -20,9 +37,29 @@ void app_main(void) {
 
     // Modules
     screen_detect_init();
+
+    // Configuration simple du driver d'affichage
+    static lv_disp_draw_buf_t draw_buf;
+    static lv_color_t buf1[LV_HOR_RES_MAX * 40];
+    lv_disp_draw_buf_init(&draw_buf, buf1, NULL, LV_HOR_RES_MAX * 40);
+
+    lv_disp_drv_t disp_drv;
+    lv_disp_drv_init(&disp_drv);
+    disp_drv.hor_res = screen_get_width();
+    disp_drv.ver_res = screen_get_height();
+    disp_drv.flush_cb = my_flush;
+    disp_drv.draw_buf = &draw_buf;
+    lv_disp_drv_register(&disp_drv);
+
     sd_card_init();
     battery_update();
 
     // Interface utilisateur
     ui_init();
+
+    // Boucle principale pour LVGL
+    while (1) {
+        lv_timer_handler();
+        vTaskDelay(pdMS_TO_TICKS(5));
+    }
 }
