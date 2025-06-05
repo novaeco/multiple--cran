@@ -5,15 +5,17 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 ## Compilation et flashage
 
 1. Installer l'ESP-IDF conformément à la documentation officielle.
-2. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
-3. Compiler le projet :
+2. Exécuter `./setup.sh` pour préparer l'environnement.
+3. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
+4. Compiler le projet :
    ```bash
    idf.py build
    ```
-4. Flasher sur la carte :
+5. Flasher sur la carte :
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
+6. La taille de la partition `factory` est définie dans `partitions.csv` et sélectionnée via `sdkconfig.defaults`.
 
 ## Architecture
 
