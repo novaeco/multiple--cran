@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include "nvs_flash.h"
 #include "nvs.h"
+#include <string.h>
+#include <stdlib.h>
 
 static const char *TAG = "wifi";
 
@@ -41,6 +43,18 @@ static void save_credentials(const char *ssid, const char *pass)
     }
 }
 
+static void save_credentials(const char *ssid, const char *pass)
+{
+    nvs_handle_t handle;
+    if (nvs_open("wifi", NVS_READWRITE, &handle) == ESP_OK) {
+        nvs_set_str(handle, "ssid", ssid);
+        nvs_set_str(handle, "pass", pass);
+        nvs_commit(handle);
+        nvs_close(handle);
+    }
+}
+
+void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
 void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
 void wifi_driver_connect(void) {
     nvs_handle_t handle;
