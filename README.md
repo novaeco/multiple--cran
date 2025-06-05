@@ -15,6 +15,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
+6. La taille de la partition `factory` est définie dans `partitions.csv` et sélectionnée via `sdkconfig.defaults`.
 
 ## Architecture
 
