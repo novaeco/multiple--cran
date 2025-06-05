@@ -22,7 +22,7 @@ void screen_detect_init(void) {
         s_width = 800;
         s_height = 480;
     }
-    lv_disp_set_resolution(NULL, s_width, s_height);
+    lv_display_set_resolution(NULL, s_width, s_height);
 }
 
 int screen_get_width(void) {
