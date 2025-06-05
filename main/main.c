@@ -17,14 +17,17 @@
 
 static lv_color_t *lcd_buffer;
 
-static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
+static void my_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
 {
     int32_t w = area->x2 - area->x1 + 1;
-    for (int y = area->y1; y <= area->y2; y++) {
-        memcpy(&lcd_buffer[y * drv->hor_res + area->x1], color_p, w * sizeof(lv_color_t));
-        color_p += w;
+    int32_t h = area->y2 - area->y1 + 1;
+    int32_t hor_res = lv_display_get_horizontal_resolution(disp);
+    lv_color_t *color_p = (lv_color_t *)px_map;
+    for(int32_t y = 0; y < h; y++) {
+        memcpy(&lcd_buffer[(area->y1 + y) * hor_res + area->x1],
+               &color_p[y * w], w * sizeof(lv_color_t));
     }
-    lv_disp_flush_ready(drv);
+    lv_display_flush_ready(disp);
 }
 
 void app_main(void) {
@@ -43,17 +46,13 @@ void app_main(void) {
     size_t buf_size = screen_get_width() * screen_get_height() * sizeof(lv_color_t);
     lcd_buffer = malloc(buf_size);
 
-    static lv_disp_draw_buf_t draw_buf;
-    static lv_color_t buf1[LV_HOR_RES_MAX * 40];
-    lv_disp_draw_buf_init(&draw_buf, buf1, NULL, LV_HOR_RES_MAX * 40);
-
-    lv_disp_drv_t disp_drv;
-    lv_disp_drv_init(&disp_drv);
-    disp_drv.hor_res = screen_get_width();
-    disp_drv.ver_res = screen_get_height();
-    disp_drv.flush_cb = my_flush;
-    disp_drv.draw_buf = &draw_buf;
-    lv_disp_drv_register(&disp_drv);
+    uint32_t width = screen_get_width();
+    uint32_t height = screen_get_height();
+    lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
+    lv_display_t *disp = lv_display_create(width, height);
+    lv_display_set_flush_cb(disp, my_flush);
+    lv_display_set_buffers(disp, buf1, NULL, width * 40 * sizeof(lv_color_t),
+                           LV_DISPLAY_RENDER_MODE_PARTIAL);
 
     sd_card_init();
     wifi_driver_connect(NULL, NULL);
@@ -65,5 +64,6 @@ void app_main(void) {
         vTaskDelay(pdMS_TO_TICKS(5));
     }
 
+    free(buf1);
     free(lcd_buffer);
 }
