@@ -25,6 +25,11 @@ void app_main(void) {
     uart_driver_init(UART_NUM_0, 1, 3, 115200);
     wifi_driver_init();
     wifi_driver_connect();
+
+void app_main(void) {
+    // Initialisation des pilotes
+    uart_driver_init(UART_NUM_0, 1, 3, 115200);
+    wifi_driver_init();
     ble_driver_init();
     i2c_driver_scan(I2C_NUM_0);
     can_driver_init();

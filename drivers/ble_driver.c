@@ -1,4 +1,5 @@
 #include "ble_driver.h"
+
 #include "esp_bt.h"
 #include "esp_gap_ble_api.h"
 #include "esp_bt_main.h"
@@ -30,4 +31,9 @@ void ble_driver_init(void) {
     }));
 
     ESP_LOGI(TAG, "BLE publicité démarrée");
+
+
+void ble_driver_init(void) {
+    // TODO: implémenter le mode publicité et l'appairage
+
 }

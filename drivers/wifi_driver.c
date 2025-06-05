@@ -59,4 +59,7 @@ void wifi_driver_connect(void) {
 
     ESP_ERROR_CHECK(esp_wifi_connect());
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
+
+void wifi_driver_init(void) {
+    // TODO: implémenter la configuration Wi-Fi STA et le scan
 }

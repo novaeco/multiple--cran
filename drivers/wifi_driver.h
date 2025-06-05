@@ -6,3 +6,5 @@ void wifi_driver_init(void);
 
 // Connexion avec SSID/mot de passe stockés en NVS
 void wifi_driver_connect(void);
+// Connexion Wi-Fi en mode station automatique
+void wifi_driver_init(void);

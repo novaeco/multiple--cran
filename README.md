@@ -24,6 +24,7 @@ Ce projet fournit une structure de base modulaire compatible avec les écrans Wa
 
 Chaque fichier contient des commentaires détaillés en français pour faciliter l'extension du projet.
 
+
 > **Note :** les pilotes et modules fournis sont des *squelettes* à compléter pour obtenir un firmware fonctionnel.
 
 ## Licence
@@ -34,3 +35,4 @@ Ce projet est distribué sous licence MIT. Consultez le fichier `LICENSE` pour p
 
 - Utilisez un message court et impératif décrivant la modification.
 - Ajoutez des explications plus longues dans le corps du message si nécessaire.
+
