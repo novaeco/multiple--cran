@@ -5,7 +5,6 @@ set(srcs
     can_driver.c
     rs485_driver.c
 )
-
 set(requires nvs_flash esp_wifi esp_event esp_netif driver)
 set(priv_requires "")
 set(include_dirs)
