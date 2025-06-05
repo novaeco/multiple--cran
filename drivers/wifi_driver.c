@@ -6,8 +6,6 @@
 #include <nvs.h>
 #include <string.h>
 #include <stdlib.h>
-#include "nvs_flash.h"
-#include "nvs.h"
 
 static const char *TAG = "wifi";
 
@@ -42,6 +40,7 @@ static void save_credentials(const char *ssid, const char *pass)
     }
 }
 
+esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
 
 static void save_credentials(const char *ssid, const char *pass)
 {
@@ -81,6 +80,14 @@ void wifi_driver_connect(void) {
     wifi_config_t cfg = {0};
     strncpy((char *)cfg.sta.ssid, ssid, sizeof(cfg.sta.ssid));
     strncpy((char *)cfg.sta.password, pass, sizeof(cfg.sta.password));
+    esp_err_t err = esp_wifi_set_config(WIFI_IF_STA, &cfg);
+    if (err != ESP_OK) return err;
+
+    err = esp_wifi_scan_start(NULL, true);
+    if (err != ESP_OK) return err;
+    uint16_t ap_num = 0;
+    err = esp_wifi_scan_get_ap_num(&ap_num);
+    if (err != ESP_OK) return err;
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &cfg));
 
     ESP_ERROR_CHECK(esp_wifi_scan_start(NULL, true));
@@ -96,6 +103,10 @@ void wifi_driver_connect(void) {
         free(recs);
     }
 
+    err = esp_wifi_connect();
+    if (err != ESP_OK) return err;
+    ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
+    return ESP_OK;
     ESP_ERROR_CHECK(esp_wifi_connect());
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
 
@@ -103,4 +114,4 @@ void wifi_driver_connect(void) {
 void wifi_driver_init(void) {
     // TODO: implémenter la configuration Wi-Fi STA et le scan
 
-}
+

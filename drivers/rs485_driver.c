@@ -25,4 +25,5 @@ void rs485_driver_init(uart_port_t uart_num, int tx_pin, int rx_pin, int de_pin,
     (void)de_pin;
     (void)baudrate;
 
+
 }

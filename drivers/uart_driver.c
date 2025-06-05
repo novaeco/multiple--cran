@@ -19,5 +19,4 @@ void uart_driver_init(uart_port_t uart_num, int tx_pin, int rx_pin, int baudrate
     (void)tx_pin;
     (void)rx_pin;
     (void)baudrate;
-
 }

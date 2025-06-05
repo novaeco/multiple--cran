@@ -20,7 +20,9 @@ void sd_card_init(void) {
         ESP_LOGE(TAG, "Échec montage carte SD: %s", esp_err_to_name(ret));
     }
 
+
 void sd_card_init(void) {
     // TODO: implémenter la gestion de la carte SD
+
 
 }

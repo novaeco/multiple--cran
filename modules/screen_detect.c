@@ -35,4 +35,4 @@ int screen_get_height(void) {
 void screen_detect_init(void) {
     // TODO: implémenter la détection d'écran et l'initialisation LVGL
 
-}
+
