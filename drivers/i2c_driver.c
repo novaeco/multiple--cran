@@ -1,4 +1,5 @@
 #include "i2c_driver.h"
+
 #include "esp_log.h"
 #include <driver/gpio.h>
 #include "freertos/FreeRTOS.h"
@@ -18,6 +19,10 @@ void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq) {
     ESP_LOGI("i2c", "Bus I2C initialis\xC3\xA9");
 }
 
+
+#include "esp_log.h"
+
+
 void i2c_driver_scan(i2c_port_t port) {
     for (uint8_t addr = 1; addr < 0x7F; ++addr) {
         i2c_cmd_handle_t cmd = i2c_cmd_link_create();
@@ -30,4 +35,9 @@ void i2c_driver_scan(i2c_port_t port) {
             ESP_LOGI("i2c", "Périphérique détecté à 0x%02X", addr);
         }
     }
+
+void i2c_driver_scan(i2c_port_t port) {
+    // TODO: implémenter le scan I2C
+    (void)port;
+
 }
