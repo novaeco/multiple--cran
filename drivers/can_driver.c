@@ -1,5 +1,5 @@
 #include "can_driver.h"
-#include "esp_log.h"
+#include <esp_log.h>
 
 void can_driver_init(void) {
     twai_general_config_t g_config = TWAI_GENERAL_CONFIG_DEFAULT(GPIO_NUM_5, GPIO_NUM_4, TWAI_MODE_NORMAL);

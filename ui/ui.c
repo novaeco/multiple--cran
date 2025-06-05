@@ -1,5 +1,5 @@
 #include "ui.h"
-#include "lvgl.h"
+#include <lvgl.h>
 #include "battery.h"
 
 static lv_obj_t *bar_batt;

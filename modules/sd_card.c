@@ -1,7 +1,7 @@
 #include "sd_card.h"
-#include "esp_vfs_fat.h"
-#include "sdmmc_cmd.h"
-#include "esp_log.h"
+#include <esp_vfs_fat.h>
+#include <sdmmc_cmd.h>
+#include <esp_log.h>
 
 static const char *TAG = "sd";
 
@@ -19,6 +19,8 @@ void sd_card_init(void) {
     } else {
         ESP_LOGE(TAG, "Échec montage carte SD: %s", esp_err_to_name(ret));
     }
+
 void sd_card_init(void) {
     // TODO: implémenter la gestion de la carte SD
+
 }

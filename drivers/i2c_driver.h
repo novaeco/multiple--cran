@@ -1,5 +1,5 @@
 #pragma once
-#include "driver/i2c.h"
+#include <driver/i2c.h>
 
 // Initialisation du bus I2C
 void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq);
