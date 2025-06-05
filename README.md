@@ -33,6 +33,14 @@ This example contains the 2048 Game, which was used from https://github.com/100a
     * LCD controller: RA8875, Touch controller: GT911
     * Buy: https://www.waveshare.com/7inch-capacitive-touch-lcd-c.htm
     * Wiki: https://www.waveshare.com/wiki/7inch_Capacitive_Touch_LCD_(C)
+* Waveshare ESP32-S3-Touch-LCD-5B
+    * LCD controller: RA8875, Touch controller: GT911
+    * Buy: https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-5B
+    * Wiki: https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-5B
+* Waveshare ESP32-S3-Touch-LCD-7
+    * LCD controller: RA8875, Touch controller: GT911
+    * Buy: https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-7
+    * Wiki: https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-7
 * Waveshare 240x240 1.28" Round LCD
     * LCD controller: GC9A01
     * Buy: https://www.waveshare.com/1.28inch-lcd-module.htm

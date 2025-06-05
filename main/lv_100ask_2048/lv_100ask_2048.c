@@ -112,7 +112,7 @@ void lv_100ask_2048_set_new_game(lv_obj_t * obj)
 
     init_matrix_num(game_2048->matrix);
     update_btnm_map(game_2048->btnm_map, game_2048->matrix);
-    lv_btnmatrix_set_map(game_2048->btnm, game_2048->btnm_map);
+    lv_btnmatrix_set_map(game_2048->btnm, (const char **)game_2048->btnm_map);
 
     lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
@@ -211,7 +211,7 @@ static void lv_100ask_2048_constructor(const lv_obj_class_t * class_p, lv_obj_t 
     lv_group_remove_obj(game_2048->btnm);
     lv_obj_add_flag(game_2048->btnm, LV_OBJ_FLAG_EVENT_BUBBLE);
 
-    lv_btnmatrix_set_map(game_2048->btnm, game_2048->btnm_map);
+    lv_btnmatrix_set_map(game_2048->btnm, (const char **)game_2048->btnm_map);
     lv_btnmatrix_set_btn_ctrl_all(game_2048->btnm, LV_BTNMATRIX_CTRL_DISABLED);
 
     lv_obj_add_event_cb(game_2048->btnm, btnm_event_cb, LV_EVENT_ALL, NULL);
@@ -313,7 +313,7 @@ static void lv_100ask_2048_event(const lv_obj_class_t * class_p, lv_event_t * e)
     {
         addRandom(game_2048->matrix);
         update_btnm_map(game_2048->btnm_map, game_2048->matrix);
-        lv_btnmatrix_set_map(game_2048->btnm, game_2048->btnm_map);
+        lv_btnmatrix_set_map(game_2048->btnm, (const char **)game_2048->btnm_map);
 
         res = lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
         if(res != LV_RES_OK) return;
