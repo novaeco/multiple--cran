@@ -6,6 +6,7 @@ static lv_obj_t *bar_batt;
 
 static void battery_timer_cb(lv_timer_t *t)
 {
+    battery_update();
     lv_bar_set_value(bar_batt, battery_get_percent(), LV_ANIM_OFF);
 }
 
