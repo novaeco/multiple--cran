@@ -30,4 +30,5 @@ void i2c_driver_scan(i2c_port_t port) {
             ESP_LOGI("i2c", "Périphérique détecté à 0x%02X", addr);
         }
     }
+
 }

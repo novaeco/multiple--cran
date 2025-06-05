@@ -31,4 +31,5 @@ void ble_driver_init(void) {
     }));
 
     ESP_LOGI(TAG, "BLE publicité démarrée");
+
 }

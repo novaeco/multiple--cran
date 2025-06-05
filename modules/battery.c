@@ -15,4 +15,5 @@ void battery_update(void) {
 
 int battery_get_percent(void) {
     return s_battery_percent;
+
 }

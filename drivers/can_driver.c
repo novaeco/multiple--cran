@@ -9,4 +9,5 @@ void can_driver_init(void) {
     ESP_ERROR_CHECK(twai_driver_install(&g_config, &t_config, &f_config));
     ESP_ERROR_CHECK(twai_start());
     ESP_LOGI("can", "Bus CAN initialisé");
+
 }

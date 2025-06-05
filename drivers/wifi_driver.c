@@ -41,6 +41,23 @@ static void save_credentials(const char *ssid, const char *pass)
 }
 
 esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
+
+static void save_credentials(const char *ssid, const char *pass)
+{
+    nvs_handle_t handle;
+    if (nvs_open("wifi", NVS_READWRITE, &handle) == ESP_OK) {
+        nvs_set_str(handle, "ssid", ssid);
+        nvs_set_str(handle, "pass", pass);
+        nvs_commit(handle);
+        nvs_close(handle);
+    }
+}
+
+void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
+
+void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
+void wifi_driver_connect(void) {
+
     nvs_handle_t handle;
     char ssid[32] = "";
     char pass[64] = "";
@@ -50,6 +67,8 @@ esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
         strncpy(pass, new_pass, sizeof(pass) - 1);
         save_credentials(ssid, pass);
     } else if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
+
+    if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
         size_t len = sizeof(ssid);
         nvs_get_str(handle, "ssid", ssid, &len);
         len = sizeof(pass);
@@ -68,6 +87,11 @@ esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
     uint16_t ap_num = 0;
     err = esp_wifi_scan_get_ap_num(&ap_num);
     if (err != ESP_OK) return err;
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &cfg));
+
+    ESP_ERROR_CHECK(esp_wifi_scan_start(NULL, true));
+    uint16_t ap_num = 0;
+    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_num(&ap_num));
     if (ap_num > 0) {
         wifi_ap_record_t *recs = calloc(ap_num, sizeof(wifi_ap_record_t));
         if (esp_wifi_scan_get_ap_records(&ap_num, recs) == ESP_OK) {
@@ -83,3 +107,10 @@ esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
     return ESP_OK;
 }
+    ESP_ERROR_CHECK(esp_wifi_connect());
+    ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
+
+
+void wifi_driver_init(void) {
+    // TODO: implémenter la configuration Wi-Fi STA et le scan
+

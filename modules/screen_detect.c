@@ -31,4 +31,5 @@ int screen_get_width(void) {
 
 int screen_get_height(void) {
     return s_height;
+
 }
