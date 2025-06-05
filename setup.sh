@@ -11,6 +11,10 @@ if [ -z "$IDF_PATH" ]; then
   # Disable SSL verification for idf_tools downloads
   sed -i 's/ssl.create_default_context()/ssl._create_unverified_context()/' "$IDF_PATH/tools/idf_tools.py"
   export PYTHONHTTPSVERIFY=0
+
+  git clone --depth 1 https://github.com/espressif/esp-idf.git "$HOME/esp-idf"
+  export IDF_PATH="$HOME/esp-idf"
+
   "$IDF_PATH/install.sh"
 fi
 
