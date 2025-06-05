@@ -31,4 +31,7 @@ void ble_driver_init(void) {
     }));
 
     ESP_LOGI(TAG, "BLE publicité démarrée");
+void ble_driver_init(void) {
+    // TODO: implémenter le mode publicité et l'appairage
+
 }
