@@ -1,6 +1,5 @@
 #pragma once
-
-#include "esp_wifi.h"
+#include <esp_wifi.h>
 
 // Initialisation de la pile Wi-Fi
 void wifi_driver_init(void);

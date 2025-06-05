@@ -1,5 +1,5 @@
 #include "i2c_driver.h"
-#include <esp_log.h>
+#include "esp_log.h"
 #include <driver/gpio.h>
 
 void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq) {
@@ -15,7 +15,6 @@ void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq) {
     ESP_ERROR_CHECK(i2c_driver_install(port, conf.mode, 0, 0, 0));
     ESP_LOGI("i2c", "Bus I2C initialis\xC3\xA9");
 }
-
 #include <driver/gpio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

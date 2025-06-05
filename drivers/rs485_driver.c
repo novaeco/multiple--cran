@@ -1,5 +1,5 @@
 #include "rs485_driver.h"
-#include "driver/gpio.h"
+#include <driver/gpio.h>
 
 void rs485_driver_init(uart_port_t uart_num, int tx_pin, int rx_pin, int de_pin, int baudrate) {
     uart_config_t config = {
