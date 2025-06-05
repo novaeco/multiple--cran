@@ -30,6 +30,19 @@ void wifi_driver_init(void) {
 
     ESP_LOGI(TAG, "Wi-Fi initialisé en mode STA");
 }
+
+static void save_credentials(const char *ssid, const char *pass)
+{
+    nvs_handle_t handle;
+    if (nvs_open("wifi", NVS_READWRITE, &handle) == ESP_OK) {
+        nvs_set_str(handle, "ssid", ssid);
+        nvs_set_str(handle, "pass", pass);
+        nvs_commit(handle);
+        nvs_close(handle);
+    }
+}
+
+
 static void save_credentials(const char *ssid, const char *pass)
 {
     nvs_handle_t handle;
@@ -42,7 +55,10 @@ static void save_credentials(const char *ssid, const char *pass)
 }
 
 void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
+
+void wifi_driver_connect(const char *new_ssid, const char *new_pass) {
 void wifi_driver_connect(void) {
+
     nvs_handle_t handle;
     char ssid[32] = "";
     char pass[64] = "";
@@ -52,7 +68,9 @@ void wifi_driver_connect(void) {
         strncpy(pass, new_pass, sizeof(pass) - 1);
         save_credentials(ssid, pass);
     } else if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
+
     if (nvs_open("wifi", NVS_READONLY, &handle) == ESP_OK) {
+
         size_t len = sizeof(ssid);
         nvs_get_str(handle, "ssid", ssid, &len);
         len = sizeof(pass);
@@ -81,6 +99,8 @@ void wifi_driver_connect(void) {
     ESP_ERROR_CHECK(esp_wifi_connect());
     ESP_LOGI(TAG, "Connexion au réseau %s", ssid);
 
+
 void wifi_driver_init(void) {
     // TODO: implémenter la configuration Wi-Fi STA et le scan
+
 }

@@ -2,10 +2,7 @@
 #include "esp_bt.h"
 #include "nvs_flash.h"
 #include <esp_gap_ble_api.h>
-#include <esp_log.h>
-#include "esp_gap_ble_api.h"
-#include "esp_bt_main.h"
-#include "esp_log.h"
+
 
 static const char *TAG = "ble";
 
@@ -33,7 +30,6 @@ void ble_driver_init(void) {
     }));
 
     ESP_LOGI(TAG, "BLE publicité démarrée");
-
 void ble_driver_init(void) {
     // TODO: implémenter le mode publicité et l'appairage
 

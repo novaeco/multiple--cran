@@ -60,6 +60,7 @@ Ce projet fournit une structure de base modulaire compatible avec les écrans Wa
 
 Chaque fichier contient des commentaires détaillés en français pour faciliter l'extension du projet.
 
+
 > **Note :** les pilotes et modules fournis sont des *squelettes* à compléter pour obtenir un firmware fonctionnel.
 
 ## Licence
