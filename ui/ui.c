@@ -37,4 +37,7 @@ void ui_init(void) {
 
     /* Rafraîchissement périodique du niveau batterie */
     lv_timer_create(battery_timer_cb, 2000, NULL);
+
+void ui_init(void) {
+    // TODO: implémenter l'interface LVGL responsive
 }

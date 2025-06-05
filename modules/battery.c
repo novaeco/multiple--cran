@@ -1,6 +1,6 @@
 #include "battery.h"
-#include <driver/adc.h>
-#include <esp_log.h>
+#include "driver/adc.h"
+#include "esp_log.h"
 
 static const char *TAG = "battery";
 static int s_battery_percent = 0;
@@ -15,4 +15,6 @@ void battery_update(void) {
 
 int battery_get_percent(void) {
     return s_battery_percent;
+void battery_update(void) {
+    // TODO: implémenter la lecture et l'affichage du niveau de batterie
 }
