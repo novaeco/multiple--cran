@@ -39,3 +39,8 @@ Ce projet est distribué sous licence MIT. Consultez le fichier `LICENSE` pour p
 
 - Utilisez un message court et impératif décrivant la modification.
 - Ajoutez des explications plus longues dans le corps du message si nécessaire.
+
+## Agents spécialisés
+- **Environnement** : installe et débogue l'ESP‑IDF, en exécutant `./setup.sh` si nécessaire.
+- **Conception** : conçoit les projets pour les écrans Waveshare 5B et 7".
+- **Programmation** : maîtrise tous les langages pour réaliser les fonctionnalités.
