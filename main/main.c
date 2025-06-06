@@ -14,6 +14,7 @@
 #include "esp_lcd_panel_ops.h"
 #include "esp_lcd_panel_io.h"
 #include "esp_timer.h"
+#include <esp_log.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -22,6 +23,7 @@
  */
 static lv_color_t *lcd_buffer;
 static esp_lcd_panel_handle_t s_panel = NULL;
+static const char *TAG = "main";
 /*
  * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
  * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les
@@ -62,6 +64,10 @@ void app_main(void) {
     screen_detect_init();
     size_t buf_size = screen_get_width() * screen_get_height() * sizeof(lv_color_t);
     lcd_buffer = malloc(buf_size);
+    if (!lcd_buffer) {
+        ESP_LOGE(TAG, "Échec allocation tampon LCD");
+        return;
+    }
 
     uint32_t width = screen_get_width();
     uint32_t height = screen_get_height();
@@ -69,6 +75,11 @@ void app_main(void) {
     lv_display_t *disp = lv_display_create(width, height);
     lv_display_set_flush_cb(disp, my_flush);
     lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
+    if (!buf1) {
+        ESP_LOGE(TAG, "Échec allocation tampon LVGL");
+        free(lcd_buffer);
+        return;
+    }
     lv_display_set_buffers(disp, buf1, NULL, width * 40 * sizeof(lv_color_t),
                            LV_DISPLAY_RENDER_MODE_PARTIAL);
 
