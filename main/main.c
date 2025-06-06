@@ -15,7 +15,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* Framebuffer utilisé par l'exemple. Les données ne sont jamais envoyées
+ * vers l'écran sans implémentation spécifique du pilote.
+ */
 static lv_color_t *lcd_buffer;
+
+
+/*
+ * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
+ * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les
+ * données au contrôleur LCD (via esp_lcd_panel_draw_bitmap par exemple).
+ */
 
 static void my_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
 {

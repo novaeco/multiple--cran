@@ -18,9 +18,6 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 6. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
    Si vous aviez déjà un fichier `sdkconfig` généré, exécutez `idf.py fullclean` pour prendre en compte cette nouvelle configuration.
 
-6. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
-
-
 ## Architecture
 
 - `main/` : point d'entrée du firmware et initialisation LVGL.
@@ -30,7 +27,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
-> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel.
+> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. La fonction `my_flush()` dans `main/main.c` se contente de copier les pixels dans un tampon. Pour voir l'interface sur l'écran, implémentez un pilote `esp_lcd` adapté au panneau Waveshare.
 
 ## Licence
 
