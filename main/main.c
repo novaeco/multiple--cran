@@ -19,8 +19,6 @@
  * vers l'écran sans implémentation spécifique du pilote.
  */
 static lv_color_t *lcd_buffer;
-
-
 /*
  * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
  * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les

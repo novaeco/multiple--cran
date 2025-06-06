@@ -2,6 +2,9 @@
 # Script d'installation minimal pour ESP-IDF
 set -e
 
+echo "Installation des paquets requis" >&2
+apt-get update -y && apt-get install -y --no-install-recommends libusb-1.0-0 git ca-certificates python3 python3-pip ninja-build cmake >/dev/null
+
 if [ -z "$IDF_PATH" ]; then
   echo "Clonage de l'ESP-IDF dans \$HOME/esp-idf" >&2
   if [ ! -d "$HOME/esp-idf" ]; then
