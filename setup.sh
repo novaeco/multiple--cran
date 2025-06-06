@@ -25,3 +25,10 @@ if [ -z "$IDF_PATH" ]; then
 fi
 
 source "$IDF_PATH/export.sh"
+
+# Récupère LVGL complet si absent
+if [ ! -d "components/lvgl" ]; then
+  echo "Clonage de LVGL" >&2
+  mkdir -p components
+  git clone --depth 1 https://github.com/lvgl/lvgl.git components/lvgl
+fi
