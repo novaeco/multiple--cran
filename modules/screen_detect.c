@@ -24,7 +24,7 @@ void screen_detect_init(void) {
     }
 
     /*
-     * LVGL v8 ne fournit pas d'API pour modifier la resolution d'un ecran
+     * LVGL v9 ne fournit pas d'API pour modifier la resolution d'un ecran
      * deja enregistree. La taille sera donc renseignee lors de
      * l'initialisation du pilote dans main.c.
      */
