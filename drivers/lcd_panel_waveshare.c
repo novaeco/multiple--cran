@@ -52,5 +52,4 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     ESP_LOGW(TAG, "RGB LCD non supporté sur cette cible");
     return NULL;
 #endif
-
 }

@@ -11,7 +11,6 @@ set(priv_requires)
 
 string(REPLACE "\\" "/" IDF_PATH_POSIX "$ENV{IDF_PATH}")
 set(include_dirs . "${IDF_PATH_POSIX}/components/esp_lcd/rgb/include")
-set(include_dirs . "$ENV{IDF_PATH}/components/esp_lcd/rgb/include")
 
 if(CONFIG_BT_BLUEDROID_ENABLED)
     list(APPEND srcs ble_driver.c)
