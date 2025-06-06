@@ -8,6 +8,7 @@ set(srcs
 )
 set(requires nvs_flash esp_wifi esp_event esp_netif driver esp_lcd)
 set(priv_requires)
+
 string(REPLACE "\\" "/" IDF_PATH_POSIX "$ENV{IDF_PATH}")
 set(include_dirs . "${IDF_PATH_POSIX}/components/esp_lcd/rgb/include")
 
