@@ -15,6 +15,7 @@ static const char *TAG = "lcd_panel";
 
 esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
 #if SOC_LCD_RGB_SUPPORTED
+
     esp_lcd_rgb_panel_config_t panel_config = {
         .data_width = 16,
         .psram_trans_align = 64,
@@ -51,4 +52,5 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     ESP_LOGW(TAG, "RGB LCD non supporté sur cette cible");
     return NULL;
 #endif
+
 }
