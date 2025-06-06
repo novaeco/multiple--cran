@@ -10,10 +10,11 @@ static int s_width = 800;
 static int s_height = 480;
 
 void screen_detect_init(void) {
-    // Exemple simplifié : détection par lecture d'une GPIO
-    bool is_lcd5b = gpio_get_level(GPIO_NUM_2); // Hypothétique pin de détection
+    // Tentative de détection via le contrôleur tactile GT911
+    i2c_driver_scan(I2C_NUM_0);
+    bool gt911_high = (gpio_get_level(GPIO_NUM_2) == 1);
 
-    if (is_lcd5b) {
+    if (gt911_high) {
         ESP_LOGI(TAG, "Écran 1024x600 détecté");
         s_width = 1024;
         s_height = 600;

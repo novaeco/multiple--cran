@@ -11,6 +11,8 @@
 #include "battery.h"
 #include "ui.h"
 #include <lvgl.h>
+#include "esp_lcd_panel_ops.h"
+#include "esp_lcd_panel_io.h"
 #include "esp_timer.h"
 #include <string.h>
 #include <stdlib.h>
@@ -19,6 +21,7 @@
  * vers l'écran sans implémentation spécifique du pilote.
  */
 static lv_color_t *lcd_buffer;
+static esp_lcd_panel_handle_t s_panel = NULL;
 /*
  * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
  * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les
@@ -33,6 +36,11 @@ static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *colo
                w * sizeof(lv_color_t));
         color_p += w;
 
+    }
+    if (s_panel) {
+        esp_lcd_panel_draw_bitmap(s_panel, area->x1, area->y1,
+                                  area->x2 + 1, area->y2 + 1,
+                                  &lcd_buffer[area->y1 * drv->hor_res + area->x1]);
     }
     lv_disp_flush_ready(drv);
 }
