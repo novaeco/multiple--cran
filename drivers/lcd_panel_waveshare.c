@@ -4,12 +4,17 @@
 #include <esp_lcd_panel_rgb.h>
 #include <esp_log.h>
 
-#define PIN_NUM_PCLK  40
-#define PIN_NUM_CS    41
-#define PIN_NUM_DE    42
-#define PIN_NUM_VSYNC 39
-#define PIN_NUM_HSYNC 38
-#define PIN_NUM_DATA0 0
+#define PIN_NUM_PCLK  7
+#define PIN_NUM_DE    5
+#define PIN_NUM_VSYNC 3
+#define PIN_NUM_HSYNC 46
+
+// Mapping 16-bit RGB565 data bus using Waveshare pinout
+static const int data_pins[16] = {
+    14, 38, 18, 17, 10,     // B3..B7
+    39, 0, 45, 48, 47, 21,  // G2..G7 (G3 on GPIO0)
+    1, 2, 42, 41, 40        // R3..R7
+};
 
 static const char *TAG = "lcd_panel";
 
@@ -26,10 +31,10 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
         .vsync_gpio_num = PIN_NUM_VSYNC,
         .hsync_gpio_num = PIN_NUM_HSYNC,
         .data_gpio_nums = {
-            PIN_NUM_DATA0, PIN_NUM_DATA0 + 1, PIN_NUM_DATA0 + 2, PIN_NUM_DATA0 + 3,
-            PIN_NUM_DATA0 + 4, PIN_NUM_DATA0 + 5, PIN_NUM_DATA0 + 6, PIN_NUM_DATA0 + 7,
-            PIN_NUM_DATA0 + 8, PIN_NUM_DATA0 + 9, PIN_NUM_DATA0 + 10, PIN_NUM_DATA0 + 11,
-            PIN_NUM_DATA0 + 12, PIN_NUM_DATA0 + 13, PIN_NUM_DATA0 + 14, PIN_NUM_DATA0 + 15
+            data_pins[0], data_pins[1], data_pins[2], data_pins[3],
+            data_pins[4], data_pins[5], data_pins[6], data_pins[7],
+            data_pins[8], data_pins[9], data_pins[10], data_pins[11],
+            data_pins[12], data_pins[13], data_pins[14], data_pins[15]
         },
         .timings = {
             .pclk_hz = 9 * 1000 * 1000,
