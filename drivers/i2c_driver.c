@@ -4,6 +4,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+static const char *TAG = "i2c";
+
 void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq) {
     i2c_config_t conf = {
         .mode = I2C_MODE_MASTER,
@@ -15,7 +17,7 @@ void i2c_driver_init(i2c_port_t port, int sda, int scl, uint32_t freq) {
     };
     ESP_ERROR_CHECK(i2c_param_config(port, &conf));
     ESP_ERROR_CHECK(i2c_driver_install(port, conf.mode, 0, 0, 0));
-    ESP_LOGI("i2c", "Bus I2C initialis\xC3\xA9");
+    ESP_LOGI(TAG, "Bus I2C initialis\xC3\xA9");
 }
 
 void i2c_driver_scan(i2c_port_t port) {
@@ -27,7 +29,7 @@ void i2c_driver_scan(i2c_port_t port) {
         esp_err_t ret = i2c_master_cmd_begin(port, cmd, pdMS_TO_TICKS(50));
         i2c_cmd_link_delete(cmd);
         if (ret == ESP_OK) {
-            ESP_LOGI("i2c", "Périphérique détecté à 0x%02X", addr);
+            ESP_LOGI(TAG, "Périphérique détecté à 0x%02X", addr);
         }
     }
 

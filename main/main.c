@@ -34,7 +34,7 @@ static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *colo
         color_p += w;
 
     }
-    lv_display_flush_ready(disp);
+    lv_disp_flush_ready(drv);
 }
 
 void app_main(void) {
