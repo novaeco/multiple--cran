@@ -25,6 +25,8 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 - `main/` : point d'entrée du firmware et initialisation LVGL.
 - `drivers/` : pilotes de communication (UART, Wi-Fi, BLE, I2C, CAN, RS485).
 - `modules/` : fonctionnalités haut niveau (détection d'écran, carte SD, gestion batterie).
+- `battery.c` utilise l'API ADC *oneshot* avec une atténuation `ADC_ATTEN_DB_12`.
+- `sd_card.c` démonte la carte avec `esp_vfs_fat_sdcard_unmount("/sdcard")`.
 - `ui/` : interface graphique LVGL adaptative.
 - `components/` : contient LVGL après exécution de `./setup.sh`.
 
