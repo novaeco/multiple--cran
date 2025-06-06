@@ -1,3 +1,14 @@
+
+# Brochage et caractéristiques des cartes Waveshare ESP32-S3 Touch LCD
+
+Cette page regroupe les caractéristiques principales et le brochage des modèles 7" et 5B.
+## Caractéristiques communes
+
+- Processeur double cœur Xtensa LX7 à 240 MHz
+- Wi‑Fi 2,4 GHz (802.11 b/g/n) et Bluetooth 5
+- 16 Mo de flash et 8 Mo de PSRAM
+- Interfaces CAN, RS485, I²C, USB pleine vitesse et lecteur de carte TF
+
 # Brochage des cartes Waveshare ESP32-S3 Touch LCD
 
 Ces tableaux r\xC3\xA9capitulent les connexions GPIO des cartes 7\" et 5B fournies par Waveshare.
@@ -36,6 +47,9 @@ Broches suppl\xC3\xA9mentaires :
 - **USB_SEL/CAN_SEL** via EXIO5
 
 ## ESP32-S3-Touch-LCD-5B
+
+Écran IPS 5 pouces (800×480 ou 1024×600) avec alimentation large 7–36 V et RTC intégré.
+
 
 | GPIO | Fonction |
 |------|----------|
