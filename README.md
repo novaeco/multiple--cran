@@ -31,6 +31,9 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
 > **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Un pilote `esp_lcd` minimal pour les écrans Waveshare est fourni dans `drivers/lcd_panel_waveshare.c`.
+>
+> Les tableaux de brochage détaillés des cartes sont disponibles dans
+> [`docs/waveshare_pinout.md`](docs/waveshare_pinout.md).
 
 ## Licence
 
