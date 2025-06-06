@@ -1,9 +1,7 @@
 #include "lcd_panel_waveshare.h"
 #include <esp_lcd_panel_io.h>
 #include <esp_lcd_panel_vendor.h>
-
 #include <esp_lcd_panel_rgb.h>
-
 #include <esp_log.h>
 
 #define PIN_NUM_PCLK  40
@@ -16,7 +14,6 @@
 static const char *TAG = "lcd_panel";
 
 esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
-
 #if SOC_LCD_RGB_SUPPORTED
 
     esp_lcd_rgb_panel_config_t panel_config = {
@@ -51,7 +48,6 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     esp_lcd_panel_init(handle);
     esp_lcd_panel_invert_color(handle, true);
     return handle;
-
 #else
     ESP_LOGW(TAG, "RGB LCD non supporté sur cette cible");
     return NULL;
