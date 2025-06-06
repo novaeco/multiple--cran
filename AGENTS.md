@@ -11,9 +11,12 @@
 - Exécuter `./setup.sh` si les dépendances ESP-IDF ne sont pas présentes
 
 ## Agents spécialisés
-- **Agent environnement** : installe, configure et débogue l'ESP‑IDF. Il vérifie
-  que les dépendances sont présentes et exécute `./setup.sh` en cas de besoin.
-- **Agent conception** : analyse et conçoit les projets pour les écrans
-  Waveshare ESP32‑S3 Touch LCD 5B et 7".
-- **Agent programmation** : expert dans tous les langages pour implémenter les
-  fonctionnalités demandées.
+- **Agent Orchestrateur Principal (Orchestrator)** : pilote l'écosystème et coordonne les autres agents.
+- **Agent de Provisioning & Setup (Provisioner)** : installe et met à jour les outils de développement.
+- **Agents de Développement Par Langage (DevAgent[Lang])** : fournissent l'expertise pour chaque technologie.
+- **Agent Build & CI (Builder)** : centralise la compilation et la CI/CD.
+- **Agent de Test & Qualité (Tester)** : automatise les tests et le lint.
+- **Agent Déploiement & Infrastructure (Deployer)** : gère le déploiement et l'infrastructure.
+- **Agent d’Observabilité & Monitoring (Observer)** : agrège logs et métriques.
+- **Agent de Documentation & Assistance (DocAgent)** : génère et maintient la documentation.
+- **Agent de Collaboration (CollabAgent)** : facilite la gestion de branches et tickets.
