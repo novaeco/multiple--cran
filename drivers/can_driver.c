@@ -6,8 +6,16 @@ void can_driver_init(void) {
     twai_timing_config_t t_config = TWAI_TIMING_CONFIG_500KBITS();
     twai_filter_config_t f_config = TWAI_FILTER_CONFIG_ACCEPT_ALL();
 
-    ESP_ERROR_CHECK(twai_driver_install(&g_config, &t_config, &f_config));
-    ESP_ERROR_CHECK(twai_start());
+    esp_err_t ret = twai_driver_install(&g_config, &t_config, &f_config);
+    if (ret != ESP_OK) {
+        ESP_LOGE("can", "Erreur install CAN: %s", esp_err_to_name(ret));
+        return;
+    }
+    ret = twai_start();
+    if (ret != ESP_OK) {
+        ESP_LOGE("can", "Impossible de démarrer CAN: %s", esp_err_to_name(ret));
+        return;
+    }
     ESP_LOGI("can", "Bus CAN initialisé");
 
 }

@@ -7,6 +7,17 @@
 
 static const char *TAG = "ble";
 
+static void gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
+{
+    if (event == ESP_GAP_BLE_ADV_START_COMPLETE_EVT) {
+        if (param->adv_start_cmpl.status == ESP_BT_STATUS_SUCCESS) {
+            ESP_LOGI(TAG, "Publicité BLE démarrée");
+        } else {
+            ESP_LOGE(TAG, "Échec démarrage publicité");
+        }
+    }
+}
+
 static esp_ble_adv_data_t adv_data = {
     .set_scan_rsp = false,
     .include_name = true,
@@ -21,6 +32,7 @@ void ble_driver_init(void) {
     ESP_ERROR_CHECK(esp_bt_controller_enable(ESP_BT_MODE_BLE));
     ESP_ERROR_CHECK(esp_bluedroid_init());
     ESP_ERROR_CHECK(esp_bluedroid_enable());
+    ESP_ERROR_CHECK(esp_ble_gap_register_callback(gap_cb));
 
     ESP_ERROR_CHECK(esp_ble_gap_config_adv_data(&adv_data));
     ESP_ERROR_CHECK(esp_ble_gap_start_advertising(&(esp_ble_adv_params_t){
