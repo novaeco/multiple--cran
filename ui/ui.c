@@ -4,6 +4,12 @@
 
 static lv_obj_t *bar_batt;
 
+static void btn_event_cb(lv_event_t *e)
+{
+    lv_obj_t *btn = lv_event_get_target(e);
+    lv_label_set_text(lv_obj_get_child(btn, 0), "Pressé");
+}
+
 static void battery_timer_cb(lv_timer_t *t)
 {
     battery_update();
@@ -22,17 +28,19 @@ void ui_init(void) {
     lv_label_set_text(label, "Interface prête");
 
     /* Slider d'exemple */
+    lv_coord_t w = lv_disp_get_hor_res(NULL);
     lv_obj_t *slider = lv_slider_create(cont);
-    lv_obj_set_width(slider, LV_PCT(80));
+    lv_obj_set_width(slider, w - 40);
 
     /* Bouton simple */
     lv_obj_t *btn = lv_btn_create(cont);
+    lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_CLICKED, NULL);
     lv_obj_t *btn_label = lv_label_create(btn);
     lv_label_set_text(btn_label, "OK");
 
     /* Barre de niveau batterie */
     bar_batt = lv_bar_create(cont);
-    lv_obj_set_width(bar_batt, LV_PCT(80));
+    lv_obj_set_width(bar_batt, w - 40);
     lv_bar_set_range(bar_batt, 0, 100);
     lv_bar_set_value(bar_batt, battery_get_percent(), LV_ANIM_OFF);
 
