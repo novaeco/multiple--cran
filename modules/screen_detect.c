@@ -22,7 +22,11 @@ void screen_detect_init(void) {
         s_width = 800;
         s_height = 480;
     }
-    lv_disp_set_resolution(NULL, s_width, s_height);
+    /*
+     * LVGL v8 ne fournit pas d'API pour modifier la resolution d'un ecran
+     * deja enregistree. La taille sera donc renseignee lors de
+     * l'initialisation du pilote dans main.c.
+     */
 }
 
 int screen_get_width(void) {
