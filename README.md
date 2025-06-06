@@ -7,6 +7,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 1. Installer l'ESP-IDF conformément à la documentation officielle.
 2. Exécuter `./setup.sh` pour préparer l'environnement (dépendances APT
    incluses).
+
 3. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
 4. Compiler le projet :
    ```bash

@@ -19,12 +19,12 @@
  * vers l'écran sans implémentation spécifique du pilote.
  */
 static lv_color_t *lcd_buffer;
-
 /*
  * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
  * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les
  * données au contrôleur LCD (via esp_lcd_panel_draw_bitmap par exemple).
  */
+
 static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
 {
     int32_t w = area->x2 - area->x1 + 1;
@@ -32,8 +32,9 @@ static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *colo
         memcpy(&lcd_buffer[y * drv->hor_res + area->x1], color_p,
                w * sizeof(lv_color_t));
         color_p += w;
+
     }
-    lv_disp_flush_ready(drv);
+    lv_display_flush_ready(disp);
 }
 
 void app_main(void) {
@@ -54,6 +55,7 @@ void app_main(void) {
 
     uint32_t width = screen_get_width();
     uint32_t height = screen_get_height();
+
     static lv_disp_draw_buf_t draw_buf;
     lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
     lv_disp_draw_buf_init(&draw_buf, buf1, NULL, width * 40);
@@ -65,6 +67,7 @@ void app_main(void) {
     disp_drv.flush_cb = my_flush;
     disp_drv.draw_buf = &draw_buf;
     lv_disp_drv_register(&disp_drv);
+
 
     sd_card_init();
     wifi_driver_connect(NULL, NULL);
