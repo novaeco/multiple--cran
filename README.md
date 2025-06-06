@@ -26,10 +26,11 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 - `drivers/` : pilotes de communication (UART, Wi-Fi, BLE, I2C, CAN, RS485).
 - `modules/` : fonctionnalités haut niveau (détection d'écran, carte SD, gestion batterie).
 - `ui/` : interface graphique LVGL adaptative.
+- `components/` : contient LVGL après exécution de `./setup.sh`.
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
-> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. La fonction `my_flush()` dans `main/main.c` se contente de copier les pixels dans un tampon. Pour voir l'interface sur l'écran, implémentez un pilote `esp_lcd` adapté au panneau Waveshare.
+> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Un pilote `esp_lcd` minimal pour les écrans Waveshare est fourni dans `drivers/lcd_panel_waveshare.c`.
 
 ## Licence
 
