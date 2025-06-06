@@ -26,7 +26,7 @@ void sd_card_init(void) {
 
 void sd_card_unmount(void) {
     if (s_card) {
-        esp_vfs_fat_sdmmc_unmount();
+        esp_vfs_fat_sdcard_unmount("/sdcard", s_card);
         s_card = NULL;
         ESP_LOGI(TAG, "Carte SD démontée");
     }
