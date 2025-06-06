@@ -4,8 +4,9 @@ set(srcs
     i2c_driver.c
     can_driver.c
     rs485_driver.c
+    lcd_panel_waveshare.c
 )
-set(requires nvs_flash esp_wifi esp_event esp_netif driver)
+set(requires nvs_flash esp_wifi esp_event esp_netif driver esp_lcd)
 set(priv_requires)
 set(include_dirs .)
 
