@@ -26,7 +26,7 @@ static esp_lcd_panel_handle_t s_panel = NULL;
 static const char *TAG = "main";
 /*
  * Callback LVGL appelé pour rafraîchir l'écran. Ce code copie simplement les
- * pixels dans un tampon. Adapt ez ici pour transmettre effectivement les
+ * pixels dans un tampon. Adaptez ici pour transmettre effectivement les
  * données au contrôleur LCD (via esp_lcd_panel_draw_bitmap par exemple).
  */
 
