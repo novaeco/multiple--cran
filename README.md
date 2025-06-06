@@ -34,7 +34,6 @@ Chaque composant est livré sous forme de squelette commenté en français afin 
 >
 
 > La fiche de caractéristiques et le brochage détaillé sont disponibles dans
-
 > [`docs/waveshare_pinout.md`](docs/waveshare_pinout.md).
 
 ## Licence
