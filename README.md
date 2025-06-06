@@ -15,7 +15,9 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
+
 6. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
+
 
 ## Architecture
 
