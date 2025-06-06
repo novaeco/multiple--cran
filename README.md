@@ -32,7 +32,9 @@ Chaque composant est livré sous forme de squelette commenté en français afin 
 
 > **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Un pilote `esp_lcd` minimal pour les écrans Waveshare est fourni dans `drivers/lcd_panel_waveshare.c`.
 >
+
 > La fiche de caractéristiques et le brochage détaillé sont disponibles dans
+
 > [`docs/waveshare_pinout.md`](docs/waveshare_pinout.md).
 
 ## Licence
