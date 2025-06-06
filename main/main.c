@@ -9,6 +9,7 @@
 #include "screen_detect.h"
 #include "sd_card.h"
 #include "battery.h"
+#include "lcd_panel_waveshare.h"
 #include "ui.h"
 #include <lvgl.h>
 #include "esp_lcd_panel_ops.h"
@@ -71,6 +72,8 @@ void app_main(void) {
 
     uint32_t width = screen_get_width();
     uint32_t height = screen_get_height();
+
+    s_panel = lcd_panel_waveshare_init(width, height);
 
     lv_display_t *disp = lv_display_create(width, height);
     lv_display_set_flush_cb(disp, my_flush);

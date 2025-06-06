@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-# Enregistre les composants personnalisés situés 
+# Enregistre les composants personnalisés situés
 # directement dans le dépôt (drivers, modules, ui)
 set(EXTRA_COMPONENT_DIRS
     ${CMAKE_CURRENT_LIST_DIR}/drivers
