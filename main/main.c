@@ -95,6 +95,7 @@ void app_main(void) {
     while (1) {
         lv_timer_handler();
         vTaskDelay(pdMS_TO_TICKS(5));
+        lv_tick_inc(5);
     }
 
     free(buf1);
