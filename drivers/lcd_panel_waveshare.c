@@ -9,12 +9,14 @@
 #define PIN_NUM_VSYNC 3
 #define PIN_NUM_HSYNC 46
 
+#if SOC_LCD_RGB_SUPPORTED
 // Mapping 16-bit RGB565 data bus using Waveshare pinout
 static const int data_pins[16] = {
     14, 38, 18, 17, 10,     // B3..B7
     39, 0, 45, 48, 47, 21,  // G2..G7 (G3 on GPIO0)
     1, 2, 42, 41, 40        // R3..R7
 };
+#endif
 
 static const char *TAG = "lcd_panel";
 
