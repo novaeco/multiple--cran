@@ -8,6 +8,20 @@
 #include <stdlib.h>
 
 static const char *TAG = "wifi";
+static esp_event_handler_instance_t s_any_id;
+static esp_event_handler_instance_t s_got_ip;
+
+static void wifi_event_handler(void *arg, esp_event_base_t base,
+                               int32_t id, void *data)
+{
+    if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
+        ESP_LOGW(TAG, "Déconnecté, reconnexion...");
+        esp_wifi_connect();
+    } else if (base == IP_EVENT && id == IP_EVENT_STA_GOT_IP) {
+        ip_event_got_ip_t *evt = (ip_event_got_ip_t *)data;
+        ESP_LOGI(TAG, "Adresse IP: " IPSTR, IP2STR(&evt->ip_info.ip));
+    }
+}
 
 void wifi_driver_init(void) {
     esp_err_t ret = nvs_flash_init();
@@ -22,6 +36,10 @@ void wifi_driver_init(void) {
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID,
+                                                        &wifi_event_handler, NULL, &s_any_id));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP,
+                                                        &wifi_event_handler, NULL, &s_got_ip));
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_start());
 
@@ -71,7 +89,7 @@ esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
     err = esp_wifi_scan_get_ap_num(&ap_num);
     if (err == ESP_OK && ap_num > 0) {
         wifi_ap_record_t *recs = calloc(ap_num, sizeof(wifi_ap_record_t));
-        if (esp_wifi_scan_get_ap_records(&ap_num, recs) == ESP_OK) {
+        if (recs && esp_wifi_scan_get_ap_records(&ap_num, recs) == ESP_OK) {
             for (int i = 0; i < ap_num; ++i) {
                 ESP_LOGI(TAG, "AP d\xC3\xA9tect\xC3\xA9: %s", recs[i].ssid);
             }

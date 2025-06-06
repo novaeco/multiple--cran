@@ -10,7 +10,10 @@ void rs485_driver_init(uart_port_t uart_num, int tx_pin, int rx_pin, int de_pin,
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
     };
 
-    ESP_ERROR_CHECK(uart_driver_install(uart_num, 256, 0, 0, NULL, 0));
+    esp_err_t ret = uart_driver_install(uart_num, 256, 0, 0, NULL, 0);
+    if (ret != ESP_OK) {
+        return;
+    }
     ESP_ERROR_CHECK(uart_param_config(uart_num, &config));
     ESP_ERROR_CHECK(uart_set_pin(uart_num, tx_pin, rx_pin, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE));
 
