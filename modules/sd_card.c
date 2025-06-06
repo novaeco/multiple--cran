@@ -6,6 +6,7 @@
 #include <esp_log.h>
 
 static const char *TAG = "sd";
+static sdmmc_card_t *s_card;
 
 void sd_card_init(void) {
     sdmmc_host_t host = SDMMC_HOST_DEFAULT();
@@ -14,12 +15,19 @@ void sd_card_init(void) {
         .format_if_mount_failed = false,
         .max_files = 5,
     };
-    sdmmc_card_t *card;
-    esp_err_t ret = esp_vfs_fat_sdmmc_mount("/sdcard", &host, &slot_config, &mount_config, &card);
+    esp_err_t ret = esp_vfs_fat_sdmmc_mount("/sdcard", &host, &slot_config, &mount_config, &s_card);
     if (ret == ESP_OK) {
         ESP_LOGI(TAG, "Carte SD montée");
     } else {
         ESP_LOGE(TAG, "Échec montage carte SD: %s", esp_err_to_name(ret));
     }
 
+}
+
+void sd_card_unmount(void) {
+    if (s_card) {
+        esp_vfs_fat_sdmmc_unmount();
+        s_card = NULL;
+        ESP_LOGI(TAG, "Carte SD démontée");
+    }
 }

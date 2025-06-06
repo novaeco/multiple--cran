@@ -30,6 +30,8 @@ void i2c_driver_scan(i2c_port_t port) {
         i2c_cmd_link_delete(cmd);
         if (ret == ESP_OK) {
             ESP_LOGI(TAG, "Périphérique détecté à 0x%02X", addr);
+        } else if (ret != ESP_ERR_TIMEOUT) {
+            ESP_LOGD(TAG, "Aucun périphérique à 0x%02X", addr);
         }
     }
 
