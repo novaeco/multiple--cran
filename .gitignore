@@ -17,4 +17,3 @@ sdkconfig.old
 __pycache__/
 *.pyc
 dependencies.lock
-components/
