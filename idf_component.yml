@@ -1,3 +1,4 @@
 dependencies:
+  espressif/lvgl: "^9.2.2"
   espressif/esp_lcd: "*"
 
