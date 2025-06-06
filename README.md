@@ -5,15 +5,18 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 ## Compilation et flashage
 
 1. Installer l'ESP-IDF conformément à la documentation officielle.
-2. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
-3. Compiler le projet :
+2. Exécuter `./setup.sh` pour préparer l'environnement.
+3. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
+4. Compiler le projet :
    ```bash
    idf.py build
    ```
-4. Flasher sur la carte :
+5. Flasher sur la carte :
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
+6. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
+   Si vous aviez déjà un fichier `sdkconfig` généré, exécutez `idf.py fullclean` pour prendre en compte cette nouvelle configuration.
 
 ## Architecture
 
@@ -24,7 +27,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
-> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel.
+> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. La fonction `my_flush()` dans `main/main.c` se contente de copier les pixels dans un tampon. Pour voir l'interface sur l'écran, implémentez un pilote `esp_lcd` adapté au panneau Waveshare.
 
 ## Licence
 
