@@ -5,7 +5,7 @@
 ## Agents spécialisés
 - **Agent Orchestrateur Principal (Orchestrator)** : pilote l'écosystème, planifie les tâches et coordonne les autres agents via `tools/orchestrator.py`.
 - **Agent de Provisioning & Setup (Provisioner)** : installe et met à jour les outils de développement et vérifie la disponibilité de l'ESP‑IDF à l'aide de `tools/provisioner.py` qui exécute `setup.sh` si besoin.
-- **Agents de Développement Par Langage (DevAgent[Lang])** : fournissent l'expertise pour chaque technologie et proposent de bonnes pratiques.
+- **Agents de Développement Par Langage (DevAgent[Lang])** : fournissent l'expertise pour chaque technologie et proposent de bonnes pratiques avec le  ou les bon agents.
 - **DevAgent UI/UX Full Stack** : conçoit des interfaces esthétiques, fonctionnelles et accessibles en mêlant design et développement front‑end/back‑end.
 - **DevAgent LVGL Full Stack** : réalise des interfaces graphiques avancées pour l'embarqué et l'IoT tout en tenant compte des contraintes matérielles.
 - **DevAgent JS/TS Full Stack** : développe des applications Web complètes avec l'écosystème JavaScript/TypeScript, du frontend au backend.
