@@ -7,7 +7,8 @@
 
 static const char *TAG = "ble";
 
-static void gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
+static void gap_cb(esp_gap_ble_cb_event_t event,
+                   const esp_ble_gap_cb_param_t *param)
 {
     if (event == ESP_GAP_BLE_ADV_START_COMPLETE_EVT) {
         if (param->adv_start_cmpl.status == ESP_BT_STATUS_SUCCESS) {
