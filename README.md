@@ -8,7 +8,13 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 2. Exécuter `./setup.sh` pour préparer l'environnement (dépendances APT
    incluses).
 
-3. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
+
+3. Initialiser l'environnement ESP‑IDF :
+   ```bash
+   source "$HOME/esp-idf/export.sh"
+   ```
+   (ou `source "$IDF_PATH/export.sh"` si la variable est déjà définie)
+
 4. Vérifier que `idf.py` est disponible :
    ```bash
    idf.py --version
