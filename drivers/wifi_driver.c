@@ -6,20 +6,24 @@
 #include <nvs.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 static const char *TAG = "wifi";
 static esp_event_handler_instance_t s_any_id;
 static esp_event_handler_instance_t s_got_ip;
+static bool s_connected = false;
 
 static void wifi_event_handler(void *arg, esp_event_base_t base,
                                int32_t id, void *data)
 {
     if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
         ESP_LOGW(TAG, "Déconnecté, reconnexion...");
+        s_connected = false;
         esp_wifi_connect();
     } else if (base == IP_EVENT && id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t *evt = (ip_event_got_ip_t *)data;
         ESP_LOGI(TAG, "Adresse IP: " IPSTR, IP2STR(&evt->ip_info.ip));
+        s_connected = true;
     }
 }
 
@@ -103,3 +107,8 @@ esp_err_t wifi_driver_connect(const char *new_ssid, const char *new_pass) {
     }
     return err;
 }
+
+bool wifi_driver_is_connected(void) {
+    return s_connected;
+}
+
