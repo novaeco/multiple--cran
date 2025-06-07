@@ -8,16 +8,25 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 2. Exécuter `./setup.sh` pour préparer l'environnement (dépendances APT
    incluses).
 
-3. Initialiser l'environnement : `source $IDF_PATH/export.sh`.
-4. Compiler le projet :
+3. Initialiser l'environnement ESP‑IDF :
+   ```bash
+   source "$HOME/esp-idf/export.sh"
+   ```
+   (ou `source "$IDF_PATH/export.sh"` si la variable est déjà définie)
+4. Vérifier que `idf.py` est disponible :
+   ```bash
+   idf.py --version
+   ```
+   La commande doit renvoyer un numéro de version (ex. `ESP-IDF v6.0.0`).
+5. Compiler le projet :
    ```bash
    idf.py build
    ```
-5. Flasher sur la carte :
+6. Flasher sur la carte :
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
    ```
-6. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
+7. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
    Si vous aviez déjà un fichier `sdkconfig` généré, exécutez `idf.py fullclean` pour prendre en compte cette nouvelle configuration.
 
 ## Architecture

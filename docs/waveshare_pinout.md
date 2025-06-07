@@ -81,3 +81,10 @@ Broches suppl\xC3\xA9mentaires :
 - **CANRX** sur GPIO16
 
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
+
+Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, lancez d\x27abord `./setup.sh`,
+puis chargez l\x27ESP‑IDF avec :
+```bash
+source "$HOME/esp-idf/export.sh"
+```
+Reportez-vous \xC3\xA9galement au fichier [README.md](../README.md) pour plus de d\xC3\xA9tails.

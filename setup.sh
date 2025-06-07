@@ -26,6 +26,13 @@ fi
 
 source "$IDF_PATH/export.sh"
 
+# Vérifie la disponibilité d'idf.py
+if ! command -v idf.py >/dev/null; then
+  echo "Erreur: idf.py introuvable. Vérifiez l'installation ESP-IDF." >&2
+  exit 1
+fi
+idf.py --version >&2
+
 # Récupère LVGL complet si absent
 if [ ! -d "components/lvgl" ]; then
   echo "Clonage de LVGL" >&2
