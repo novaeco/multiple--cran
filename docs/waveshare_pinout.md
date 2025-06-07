@@ -95,5 +95,14 @@ puis chargez l\x27ESP‑IDF avec :
 
 source "$HOME/esp-idf/export.sh"
 
+Pour de bonnes performances d\'affichage, ajoutez dans `sdkconfig.defaults` :
+```
+CONFIG_FREERTOS_HZ=1000
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_120M=y
+CONFIG_SPIRAM_MODE_OCT=y
+```
+
 Reportez-vous \xC3\xA9galement au fichier [README.md](../README.md) pour plus de d\xC3\xA9tails.
 

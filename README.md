@@ -30,6 +30,14 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    ```
 7. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
    Si vous aviez déjà un fichier `sdkconfig` généré, exécutez `idf.py fullclean` pour prendre en compte cette nouvelle configuration.
+8. Pour de bonnes performances d'affichage, ajoutez également dans `sdkconfig.defaults` :
+   ```
+   CONFIG_FREERTOS_HZ=1000
+   CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+   CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+   CONFIG_ESPTOOLPY_FLASHFREQ_120M=y
+   CONFIG_SPIRAM_MODE_OCT=y
+   ```
 
 ## Architecture
 
