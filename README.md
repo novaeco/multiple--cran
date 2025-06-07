@@ -6,7 +6,8 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 
 1. Installer l'ESP-IDF conformément à la documentation officielle.
 2. Lancer `python3 tools/orchestrator.py` pour préparer l'environnement via le
-   Provisioner (ou exécuter `./setup.sh` manuellement).
+   Provisioner (ou exécuter `./setup.sh` manuellement). Notez que ce script
+   télécharge les outils ESP‑IDF et peut prendre plusieurs minutes.
 
 
 3. Initialiser l'environnement ESP‑IDF :
