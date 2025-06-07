@@ -28,8 +28,8 @@
 
 /* Optional control pins. Set to -1 if unconnected */
 #ifndef PIN_NUM_DISP
-#define PIN_NUM_DISP    -1
+#define PIN_NUM_DISP    6
 #endif
 #ifndef PIN_NUM_LCD_RST
-#define PIN_NUM_LCD_RST -1
+#define PIN_NUM_LCD_RST 11
 #endif
