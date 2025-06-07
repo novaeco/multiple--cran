@@ -78,6 +78,13 @@ void app_main(void) {
     lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
     lv_disp_draw_buf_init(&draw_buf, buf1, NULL, width * 40);
 
+    lv_disp_drv_t disp_drv;
+    lv_disp_drv_init(&disp_drv);
+    disp_drv.hor_res = width;
+    disp_drv.ver_res = height;
+    disp_drv.flush_cb = my_flush;
+    disp_drv.draw_buf = &draw_buf;
+    lv_disp_drv_register(&disp_drv);
 
     lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);

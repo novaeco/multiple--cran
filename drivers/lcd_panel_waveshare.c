@@ -1,4 +1,5 @@
 #include "lcd_panel_waveshare.h"
+#include "waveshare_pins.h"
 #include <esp_lcd_panel_io.h>
 #include <esp_lcd_panel_vendor.h>
 #include <esp_lcd_panel_rgb.h>
@@ -6,6 +7,7 @@
 #include <driver/gpio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+
 
 #define PIN_NUM_PCLK  7
 #define PIN_NUM_DE    5
@@ -17,13 +19,12 @@
 #ifndef PIN_NUM_LCD_RST
 #define PIN_NUM_LCD_RST -1
 #endif
-
 #if SOC_LCD_RGB_SUPPORTED
 // Mapping 16-bit RGB565 data bus using Waveshare pinout
 static const int data_pins[16] = {
-    14, 38, 18, 17, 10,     // B3..B7
-    39, 0, 45, 48, 47, 21,  // G2..G7 (G3 on GPIO0)
-    1, 2, 42, 41, 40        // R3..R7
+    WS_PIN_B3, WS_PIN_B4, WS_PIN_B5, WS_PIN_B6, WS_PIN_B7,
+    WS_PIN_G2, WS_PIN_G3, WS_PIN_G4, WS_PIN_G5, WS_PIN_G6, WS_PIN_G7,
+    WS_PIN_R3, WS_PIN_R4, WS_PIN_R5, WS_PIN_R6, WS_PIN_R7
 };
 #endif
 
@@ -62,10 +63,10 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
         .psram_trans_align = 64,
         .num_fbs = 1,
         .clk_src = LCD_CLK_SRC_DEFAULT,
-        .disp_gpio_num = PIN_NUM_DE,
-        .pclk_gpio_num = PIN_NUM_PCLK,
-        .vsync_gpio_num = PIN_NUM_VSYNC,
-        .hsync_gpio_num = PIN_NUM_HSYNC,
+        .disp_gpio_num = WS_PIN_DE,
+        .pclk_gpio_num = WS_PIN_PCLK,
+        .vsync_gpio_num = WS_PIN_VSYNC,
+        .hsync_gpio_num = WS_PIN_HSYNC,
         .data_gpio_nums = {
             data_pins[0], data_pins[1], data_pins[2], data_pins[3],
             data_pins[4], data_pins[5], data_pins[6], data_pins[7],

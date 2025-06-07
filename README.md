@@ -43,7 +43,8 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
-> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Le pilote `drivers/lcd_panel_waveshare.c` contrôle désormais les broches `DISP` et `LCD_RST` pour allumer l'écran. Ajustez les numéros de GPIO via les macros `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` ou laissez-les à `-1` pour désactiver leur gestion.
+> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Le pilote `drivers/lcd_panel_waveshare.c` utilise la table de brochage définie dans `drivers/waveshare_pins.h` et contrôle optionnellement les broches `DISP` et `LCD_RST`. Ajustez ces numéros via les macros `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` (valeur `-1` pour ignorer la broche) selon votre câblage.
+
 >
 
 
