@@ -31,10 +31,9 @@ static const char *TAG = "main";
  * données au contrôleur LCD (via esp_lcd_panel_draw_bitmap par exemple).
  */
 
-static void my_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
+static void my_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
 {
-    lv_color_t *color_p = (lv_color_t *)px_map;
-    uint32_t hor_res = lv_display_get_horizontal_resolution(disp);
+    uint32_t hor_res = drv->hor_res;
     int32_t w = area->x2 - area->x1 + 1;
     for(int32_t y = area->y1; y <= area->y2; y++) {
         memcpy(&lcd_buffer[y * hor_res + area->x1], color_p,
@@ -47,7 +46,7 @@ static void my_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
                                   area->x2 + 1, area->y2 + 1,
                                   &lcd_buffer[area->y1 * hor_res + area->x1]);
     }
-    lv_display_flush_ready(disp);
+    lv_disp_flush_ready(drv);
 }
 
 void app_main(void) {
@@ -75,16 +74,17 @@ void app_main(void) {
 
     s_panel = lcd_panel_waveshare_init(width, height);
 
-    lv_display_t *disp = lv_display_create(width, height);
-    lv_display_set_flush_cb(disp, my_flush);
+    static lv_disp_draw_buf_t draw_buf;
     lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
-    if (!buf1) {
-        ESP_LOGE(TAG, "Échec allocation tampon LVGL");
-        free(lcd_buffer);
-        return;
-    }
-    lv_display_set_buffers(disp, buf1, NULL, width * 40 * sizeof(lv_color_t),
-                           LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_disp_draw_buf_init(&draw_buf, buf1, NULL, width * 40);
+
+    lv_disp_drv_t disp_drv;
+    lv_disp_drv_init(&disp_drv);
+    disp_drv.hor_res = width;
+    disp_drv.ver_res = height;
+    disp_drv.flush_cb = my_flush;
+    disp_drv.draw_buf = &draw_buf;
+    lv_disp_drv_register(&disp_drv);
 
 
     sd_card_init();
