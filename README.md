@@ -53,6 +53,9 @@ Chaque composant est livré sous forme de squelette commenté en français afin 
 
 > **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Le pilote `drivers/lcd_panel_waveshare.c` utilise la table de brochage définie dans `drivers/waveshare_pins.h` et contrôle optionnellement les broches `DISP` et `LCD_RST`. Ajustez ces numéros via les macros `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` (valeur `-1` pour ignorer la broche) selon votre câblage.
 > Dans la configuration actuelle, `PIN_NUM_DISP` vaut `6` et `PIN_NUM_LCD_RST` vaut `11`.
+> Depuis la version actuelle, ce pilote règle également automatiquement la fréquence
+> `pclk` et les temporisations de synchronisation selon la résolution détectée (800×480
+> ou 1024×600). Pensez à mettre à jour vos sources avant de compiler.
 >
 
 

@@ -86,6 +86,12 @@ modifiés à l'aide de `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` pour correspondre à 
 ou laissés à `-1` afin d'ignorer ces broches. Dans ce projet, `PIN_NUM_DISP` vaut `6`
 et `PIN_NUM_LCD_RST` vaut `11`, valeurs adaptées au modèle 5B.
 
+Depuis la mise à jour du pilote `lcd_panel_waveshare.c`, la fréquence `pclk` et
+les temporisations de synchronisation (fronts et retards HSYNC/VSYNC) sont
+déterminées automatiquement selon la résolution détectée (800×480 ou 1024×600).
+Veillez donc à compiler avec la dernière version des sources pour bénéficier de
+ces réglages.
+
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
 
 
