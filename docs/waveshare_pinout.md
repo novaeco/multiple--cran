@@ -96,7 +96,7 @@ Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilo
 
 
 
-Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, lancez d\x27abord `./setup.sh`,
+Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, ex\xC3\xA9cutez `python3 tools/orchestrator.py` (ou `./setup.sh`),
 puis chargez l\x27ESP‑IDF avec :
 
 source "$HOME/esp-idf/export.sh"

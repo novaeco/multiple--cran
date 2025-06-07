@@ -5,8 +5,8 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 ## Compilation et flashage
 
 1. Installer l'ESP-IDF conformément à la documentation officielle.
-2. Exécuter `./setup.sh` pour préparer l'environnement (dépendances APT
-   incluses).
+2. Lancer `python3 tools/orchestrator.py` pour préparer l'environnement via le
+   Provisioner (ou exécuter `./setup.sh` manuellement).
 
 
 3. Initialiser l'environnement ESP‑IDF :
@@ -47,7 +47,8 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 - `battery.c` utilise l'API ADC *oneshot* avec une atténuation `ADC_ATTEN_DB_12`.
 - `sd_card.c` démonte la carte avec `esp_vfs_fat_sdcard_unmount("/sdcard")`.
 - `ui/` : interface graphique LVGL adaptative.
-- `components/` : contient LVGL après exécution de `./setup.sh`.
+- `components/` : contient LVGL une fois la Provision exécutée (via
+  `tools/orchestrator.py`).
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
