@@ -11,7 +11,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    `IDF_VERSION` pour choisir une version spécifique :
 
    ```bash
-   IDF_VERSION=v6.0 ./setup.sh
+   IDF_VERSION=v5.1.2 ./setup.sh
    ```
 
 3. Initialiser l'environnement ESP‑IDF :
@@ -24,7 +24,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    ```bash
    idf.py --version
    ```
-   La commande doit renvoyer un numéro de version (ex. `ESP-IDF v6.0.0`).
+   La commande doit renvoyer un numéro de version (ex. `ESP-IDF v5.1.2`).
 5. Compiler le projet :
    ```bash
    idf.py build
