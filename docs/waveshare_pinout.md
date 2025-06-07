@@ -88,6 +88,7 @@ ou les laisser à `-1` pour ignorer ces broches.
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
 
 
+
 Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, lancez d\x27abord `./setup.sh`,
 puis chargez l\x27ESP‑IDF avec :
 
