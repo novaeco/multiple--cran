@@ -79,7 +79,7 @@ void app_main(void) {
     lv_display_set_flush_cb(disp, my_flush);
     lv_color_t *buf1 = malloc(width * 40 * sizeof(lv_color_t));
     if (!buf1) {
-        ESP_LOGE(TAG, "Échec allocation tampon LVGL");
+        ESP_LOGE(TAG, "Echec allocation tampon LVGL");
         free(lcd_buffer);
         return;
     }
