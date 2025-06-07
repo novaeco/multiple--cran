@@ -97,10 +97,20 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
             data_pins[12], data_pins[13], data_pins[14], data_pins[15]
         },
         .timings = {
-            .pclk_hz = 9 * 1000 * 1000,
+            .pclk_hz = (width == 800 ? 18 : 20) * 1000 * 1000,
             .h_res = width,
             .v_res = height,
-        }
+            .hsync_back_porch = (width == 800 ? 40 : 140),
+            .hsync_front_porch = (width == 800 ? 20 : 160),
+            .hsync_pulse_width = (width == 800 ? 1 : 20),
+            .vsync_back_porch = (width == 800 ? 10 : 20),
+            .vsync_front_porch = (width == 800 ? 5 : 12),
+            .vsync_pulse_width = (width == 800 ? 1 : 3),
+            .flags = {
+                .pclk_active_neg = true,
+            },
+        },
+        .flags.fb_in_psram = true,
     };
 
     esp_lcd_panel_handle_t handle = NULL;
