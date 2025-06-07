@@ -86,6 +86,7 @@ void app_main(void) {
     disp_driver.draw_buf = &draw_buf;
     lv_disp_drv_register(&disp_driver);
 
+
     sd_card_init();
     wifi_driver_connect(NULL, NULL);
     battery_update();

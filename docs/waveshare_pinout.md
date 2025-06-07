@@ -85,7 +85,9 @@ Les signaux `DISP` et `LCD_RST` peuvent être activés via ces macros et
 modifiés à l'aide de `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` pour correspondre à votre câblage,
 ou laissés à `-1` afin d'ignorer ces broches.
 
+
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
+
 
 
 Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, lancez d\x27abord `./setup.sh`,

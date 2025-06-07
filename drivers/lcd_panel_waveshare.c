@@ -8,7 +8,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-
 #if SOC_LCD_RGB_SUPPORTED
 // Mapping 16-bit RGB565 data bus using Waveshare pinout
 static const int data_pins[16] = {
