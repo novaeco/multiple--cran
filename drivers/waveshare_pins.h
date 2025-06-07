@@ -33,3 +33,12 @@
 #ifndef PIN_NUM_LCD_RST
 #define PIN_NUM_LCD_RST 11
 #endif
+#ifndef PIN_NUM_LCD_MOSI
+#define PIN_NUM_LCD_MOSI 12
+#endif
+#ifndef PIN_NUM_LCD_CLK
+#define PIN_NUM_LCD_CLK 13
+#endif
+#ifndef PIN_NUM_LCD_CS
+#define PIN_NUM_LCD_CS 15
+#endif
