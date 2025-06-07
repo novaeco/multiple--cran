@@ -1,9 +1,20 @@
-#!/bin/bash
-# Script d'installation minimal pour ESP-IDF
-set -e
+#!/usr/bin/env bash
+# Script d'installation de l'ESP-IDF avec options configurables
+set -euo pipefail
 
-echo "Installation des paquets requis" >&2
-apt-get update -y && apt-get install -y --no-install-recommends libusb-1.0-0 git ca-certificates python3 python3-pip ninja-build cmake >/dev/null
+# Permet de choisir la version d'ESP-IDF et celle de LVGL via des variables
+IDF_VERSION="${IDF_VERSION:-v6.0}"
+IDF_PATH="${IDF_PATH:-$HOME/esp-idf}"
+LVGL_TAG="${LVGL_TAG:-v8.3.0}"
+
+log() { echo "[setup] $*" >&2; }
+
+if command -v apt-get >/dev/null; then
+  log "Installation des paquets requis via apt-get"
+  apt-get update -y && apt-get install -y --no-install-recommends libusb-1.0-0 git ca-certificates python3 python3-pip ninja-build cmake >/dev/null
+else
+  log "Veuillez installer libusb-1.0-0, git, ca-certificates, python3, python3-pip, ninja-build et cmake via votre gestionnaire de paquets"
+fi
 
 for cmd in git python3 cmake; do
   if ! command -v "$cmd" >/dev/null; then
@@ -12,16 +23,12 @@ for cmd in git python3 cmake; do
   fi
 done
 
-if [ -z "$IDF_PATH" ]; then
-  echo "Clonage de l'ESP-IDF dans \$HOME/esp-idf" >&2
-  if [ ! -d "$HOME/esp-idf" ]; then
-    GIT_SSL_NO_VERIFY=true git clone --depth 1 https://github.com/espressif/esp-idf.git "$HOME/esp-idf"
-  fi
-  export IDF_PATH="$HOME/esp-idf"
-  # Disable SSL verification for idf_tools downloads
-  sed -i 's/ssl.create_default_context()/ssl._create_unverified_context()/' "$IDF_PATH/tools/idf_tools.py"
-  export PYTHONHTTPSVERIFY=0
+if [ ! -d "$IDF_PATH" ]; then
+  log "Clonage de l'ESP-IDF ($IDF_VERSION) dans $IDF_PATH"
+  git clone --depth 1 --branch "$IDF_VERSION" https://github.com/espressif/esp-idf.git "$IDF_PATH"
   "$IDF_PATH/install.sh"
+else
+  log "ESP-IDF deja present dans $IDF_PATH"
 fi
 
 source "$IDF_PATH/export.sh"
@@ -35,7 +42,9 @@ idf.py --version >&2
 
 # Récupère LVGL complet si absent
 if [ ! -d "components/lvgl" ]; then
-  echo "Clonage de LVGL" >&2
+  log "Clonage de LVGL ($LVGL_TAG)"
   mkdir -p components
-  git clone --depth 1 https://github.com/lvgl/lvgl.git components/lvgl
+  git clone --depth 1 --branch "$LVGL_TAG" https://github.com/lvgl/lvgl.git components/lvgl
+else
+  log "LVGL deja present"
 fi
