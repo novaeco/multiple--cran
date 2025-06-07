@@ -32,10 +32,8 @@ static const char *TAG = "lcd_panel";
 esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
 #if SOC_LCD_RGB_SUPPORTED
 
-
     #if PIN_NUM_DISP >= 0
     {
-
         gpio_config_t conf = {
             .pin_bit_mask = 1ULL << PIN_NUM_DISP,
             .mode = GPIO_MODE_OUTPUT,
@@ -49,8 +47,6 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     #if PIN_NUM_LCD_RST >= 0
     {
 
-
-
         gpio_config_t conf = {
             .pin_bit_mask = 1ULL << PIN_NUM_LCD_RST,
             .mode = GPIO_MODE_OUTPUT,
@@ -63,7 +59,6 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     }
 
     #endif
-
 
     esp_lcd_rgb_panel_config_t panel_config = {
         .data_width = 16,
