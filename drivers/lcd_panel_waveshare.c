@@ -5,6 +5,7 @@
 #include <esp_lcd_panel_rgb.h>
 #include <esp_log.h>
 #include <driver/gpio.h>
+#include <esp_bit_defs.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -25,7 +26,9 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     #if PIN_NUM_DISP >= 0
     {
         gpio_config_t conf = {
-            .pin_bit_mask = 1ULL << PIN_NUM_DISP,
+
+            .pin_bit_mask = BIT64(PIN_NUM_DISP),
+
             .mode = GPIO_MODE_OUTPUT,
         };
         gpio_config(&conf);
@@ -36,7 +39,9 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
     #if PIN_NUM_LCD_RST >= 0
     {
         gpio_config_t conf = {
-            .pin_bit_mask = 1ULL << PIN_NUM_LCD_RST,
+
+            .pin_bit_mask = BIT64(PIN_NUM_LCD_RST),
+
             .mode = GPIO_MODE_OUTPUT,
         };
         gpio_config(&conf);
