@@ -8,5 +8,4 @@
  * macros PIN_NUM_DISP and PIN_NUM_LCD_RST. Set a macro to -1 to
  * disable handling of the corresponding pin.
  */
-
 esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height);
