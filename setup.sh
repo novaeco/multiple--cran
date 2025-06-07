@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Permet de choisir la version d'ESP-IDF et celle de LVGL via des variables
-IDF_VERSION="${IDF_VERSION:-v6.0}"
+IDF_VERSION="${IDF_VERSION:-v5.1.2}"
 IDF_PATH="${IDF_PATH:-$HOME/esp-idf}"
 LVGL_TAG="${LVGL_TAG:-v8.3.0}"
 

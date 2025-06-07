@@ -100,7 +100,7 @@ Pour préparer l'environnement et compiler le projet, exécutez `python3 tools/o
 Ce script télécharge l'ESP‑IDF complet ainsi que les outils de compilation et peut prendre un certain temps. Vous pouvez définir `IDF_VERSION` pour choisir la branche ou le tag désiré avant l'exécution :
 
 ```bash
-IDF_VERSION=v6.0 ./setup.sh
+IDF_VERSION=v5.1.2 ./setup.sh
 ```
 Ensuite, chargez l'ESP‑IDF avec:
 
