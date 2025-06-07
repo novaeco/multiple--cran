@@ -5,6 +5,7 @@
 #include <esp_lcd_panel_rgb.h>
 #include "st7701.h"
 #include <driver/spi_master.h>
+#include <driver/spi_common.h>
 #include <esp_log.h>
 #include <driver/gpio.h>
 #include <esp_bit_defs.h>
