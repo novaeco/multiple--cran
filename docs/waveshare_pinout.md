@@ -96,8 +96,13 @@ Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilo
 
 
 
-Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, ex\xC3\xA9cutez `python3 tools/orchestrator.py` (ou `./setup.sh`),
-puis chargez l\x27ESP‑IDF avec :
+Pour préparer l'environnement et compiler le projet, exécutez `python3 tools/orchestrator.py` (ou `./setup.sh`).
+Ce script télécharge l'ESP‑IDF complet ainsi que les outils de compilation et peut prendre un certain temps. Vous pouvez définir `IDF_VERSION` pour choisir la branche ou le tag désiré avant l'exécution :
+
+```bash
+IDF_VERSION=v6.0 ./setup.sh
+```
+Ensuite, chargez l'ESP‑IDF avec:
 
 source "$HOME/esp-idf/export.sh"
 
