@@ -43,7 +43,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
-> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Un pilote `esp_lcd` minimal pour les écrans Waveshare est fourni dans `drivers/lcd_panel_waveshare.c`.
+> **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Le pilote `drivers/lcd_panel_waveshare.c` contrôle désormais les broches `DISP` et `LCD_RST` pour allumer l'écran. Ajustez les numéros de GPIO via les macros `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` ou laissez-les à `-1` pour désactiver leur gestion.
 >
 
 > La fiche de caractéristiques et le brochage détaillé sont disponibles dans
