@@ -6,6 +6,9 @@
 #include "st7701.h"
 #include <driver/spi_master.h>
 #include <driver/spi_common.h>
+#ifndef SPI_MODE0
+#define SPI_MODE0 0
+#endif
 #include <esp_log.h>
 #include <driver/gpio.h>
 #include <esp_bit_defs.h>
