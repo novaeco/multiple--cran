@@ -3,6 +3,9 @@
 #include <esp_lcd_panel_io.h>
 #include <esp_lcd_panel_vendor.h>
 #include <esp_lcd_panel_rgb.h>
+#include "st7701.h"
+#include <driver/spi_master.h>
+#include <driver/spi_common.h>
 #include <esp_log.h>
 #include <driver/gpio.h>
 #include <esp_bit_defs.h>
@@ -51,6 +54,29 @@ esp_lcd_panel_handle_t lcd_panel_waveshare_init(int width, int height) {
         vTaskDelay(pdMS_TO_TICKS(10));
     }
     #endif
+
+    spi_bus_config_t buscfg = {
+        .mosi_io_num = PIN_NUM_LCD_MOSI,
+        .miso_io_num = -1,
+        .sclk_io_num = PIN_NUM_LCD_CLK,
+        .quadwp_io_num = -1,
+        .quadhd_io_num = -1,
+        .max_transfer_sz = 64,
+    };
+    spi_bus_initialize(SPI2_HOST, &buscfg, SPI_DMA_CH_AUTO);
+    spi_device_interface_config_t devcfg = {
+        .command_bits = 1,
+        .address_bits = 8,
+        .mode = SPI_MODE0,
+        .clock_speed_hz = 40 * 1000 * 1000,
+        .spics_io_num = PIN_NUM_LCD_CS,
+        .queue_size = 1,
+    };
+    spi_device_handle_t lcd_spi;
+    spi_bus_add_device(SPI2_HOST, &devcfg, &lcd_spi);
+    st7701_init(lcd_spi);
+    spi_bus_remove_device(lcd_spi);
+    spi_bus_free(SPI2_HOST);
 
     esp_lcd_rgb_panel_config_t panel_config = {
         .data_width = 16,
