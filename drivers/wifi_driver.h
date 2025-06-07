@@ -1,6 +1,7 @@
 #pragma once
 #include <esp_wifi.h>
 #include <esp_err.h>
+#include <stdbool.h>
 
 
 // Initialisation de la pile Wi-Fi
@@ -10,4 +11,7 @@ void wifi_driver_init(void);
 // Si ssid et pass ne sont pas NULL, ils sont sauvegardés en NVS.
 // Retourne ESP_OK si la connexion a réussi
 esp_err_t wifi_driver_connect(const char *ssid, const char *pass);
+
+// Retourne true si la station est connectée à un AP
+bool wifi_driver_is_connected(void);
 

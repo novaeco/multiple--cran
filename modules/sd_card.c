@@ -4,6 +4,7 @@
 #include <driver/sdmmc_host.h>
 #include <driver/sdmmc_defs.h>
 #include <esp_log.h>
+#include <stdbool.h>
 
 static const char *TAG = "sd";
 static sdmmc_card_t *s_card;
@@ -30,4 +31,8 @@ void sd_card_unmount(void) {
         s_card = NULL;
         ESP_LOGI(TAG, "Carte SD démontée");
     }
+}
+
+bool sd_card_is_mounted(void) {
+    return s_card != NULL;
 }

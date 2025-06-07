@@ -1,6 +1,8 @@
 #include "ui.h"
 #include <lvgl.h>
 #include "battery.h"
+#include "wifi_driver.h"
+#include "sd_card.h"
 #include <inttypes.h>
 
 static lv_style_t style_dark;
@@ -8,6 +10,8 @@ static lv_style_t style_dark;
 static lv_obj_t *bar_batt;
 static lv_obj_t *label_batt;
 static lv_obj_t *label_slider;
+static lv_obj_t *label_wifi;
+static lv_obj_t *label_sd;
 
 static void btn_event_cb(lv_event_t *e)
 {
@@ -26,6 +30,16 @@ static void battery_timer_cb(lv_timer_t *t)
     battery_update();
     lv_bar_set_value(bar_batt, battery_get_percent(), LV_ANIM_OFF);
     lv_label_set_text_fmt(label_batt, "%"PRId32"%%", (int32_t)battery_get_percent());
+    if (wifi_driver_is_connected()) {
+        lv_label_set_text(label_wifi, "Wi-Fi: connecté");
+    } else {
+        lv_label_set_text(label_wifi, "Wi-Fi: déconnecté");
+    }
+    if (sd_card_is_mounted()) {
+        lv_label_set_text(label_sd, "SD: montée");
+    } else {
+        lv_label_set_text(label_sd, "SD: absente");
+    }
 }
 
 void ui_init(void) {
@@ -65,8 +79,13 @@ void ui_init(void) {
     lv_bar_set_value(bar_batt, battery_get_percent(), LV_ANIM_OFF);
     label_batt = lv_label_create(cont);
     lv_label_set_text_fmt(label_batt, "%"PRId32"%%", (int32_t)battery_get_percent());
+    label_wifi = lv_label_create(cont);
+    label_sd = lv_label_create(cont);
+    lv_label_set_text(label_wifi, "Wi-Fi: ...");
+    lv_label_set_text(label_sd, "SD: ...");
 
     /* Rafraîchissement périodique du niveau batterie */
     lv_timer_create(battery_timer_cb, 2000, NULL);
+    battery_timer_cb(NULL);
 
 }
