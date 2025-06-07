@@ -30,6 +30,14 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
    ```
 7. Le fichier `partitions.csv` définit une partition `factory` de 2 Mo. Prévoyez donc une carte avec au moins 4 Mo de flash et activez cette table via `sdkconfig.defaults`.
    Si vous aviez déjà un fichier `sdkconfig` généré, exécutez `idf.py fullclean` pour prendre en compte cette nouvelle configuration.
+8. Pour de bonnes performances d'affichage, ajoutez également dans `sdkconfig.defaults` :
+   ```
+   CONFIG_FREERTOS_HZ=1000
+   CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+   CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+   CONFIG_ESPTOOLPY_FLASHFREQ_120M=y
+   CONFIG_SPIRAM_MODE_OCT=y
+   ```
 
 ## Architecture
 
@@ -44,6 +52,7 @@ Ce projet fournit un squelette modulaire pour développer un firmware compatible
 Chaque composant est livré sous forme de squelette commenté en français afin de faciliter son extension.
 
 > **Note :** les pilotes et modules fournis sont des exemples à compléter pour obtenir un firmware opérationnel. Le pilote `drivers/lcd_panel_waveshare.c` utilise la table de brochage définie dans `drivers/waveshare_pins.h` et contrôle optionnellement les broches `DISP` et `LCD_RST`. Ajustez ces numéros via les macros `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` (valeur `-1` pour ignorer la broche) selon votre câblage.
+> Dans la configuration actuelle, `PIN_NUM_DISP` vaut `6` et `PIN_NUM_LCD_RST` vaut `11`.
 >
 
 

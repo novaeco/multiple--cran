@@ -83,7 +83,8 @@ Broches suppl\xC3\xA9mentaires :
 Le pilote `lcd_panel_waveshare.c` s'appuie sur les définitions de `drivers/waveshare_pins.h`.
 Les signaux `DISP` et `LCD_RST` peuvent être activés via ces macros et
 modifiés à l'aide de `PIN_NUM_DISP` et `PIN_NUM_LCD_RST` pour correspondre à votre câblage,
-ou laissés à `-1` afin d'ignorer ces broches.
+ou laissés à `-1` afin d'ignorer ces broches. Dans ce projet, `PIN_NUM_DISP` vaut `6`
+et `PIN_NUM_LCD_RST` vaut `11`, valeurs adaptées au modèle 5B.
 
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
 
@@ -93,6 +94,15 @@ Pour pr\xC3\xA9parer l\x27environnement et compiler le projet, lancez d\x27abord
 puis chargez l\x27ESP‑IDF avec :
 
 source "$HOME/esp-idf/export.sh"
+
+Pour de bonnes performances d\'affichage, ajoutez dans `sdkconfig.defaults` :
+```
+CONFIG_FREERTOS_HZ=1000
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+CONFIG_ESPTOOLPY_FLASHFREQ_120M=y
+CONFIG_SPIRAM_MODE_OCT=y
+```
 
 Reportez-vous \xC3\xA9galement au fichier [README.md](../README.md) pour plus de d\xC3\xA9tails.
 
