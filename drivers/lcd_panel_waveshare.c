@@ -8,17 +8,6 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-
-#define PIN_NUM_PCLK  7
-#define PIN_NUM_DE    5
-#define PIN_NUM_VSYNC 3
-#define PIN_NUM_HSYNC 46
-#ifndef PIN_NUM_DISP
-#define PIN_NUM_DISP  -1
-#endif
-#ifndef PIN_NUM_LCD_RST
-#define PIN_NUM_LCD_RST -1
-#endif
 #if SOC_LCD_RGB_SUPPORTED
 // Mapping 16-bit RGB565 data bus using Waveshare pinout
 static const int data_pins[16] = {
