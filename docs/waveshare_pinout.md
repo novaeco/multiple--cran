@@ -81,3 +81,5 @@ Broches suppl\xC3\xA9mentaires :
 - **CANRX** sur GPIO16
 
 Ces informations peuvent servir de r\xC3\xA9f\xC3\xA9rence pour ajuster les pilotes et la configuration selon la carte utilis\xC3\xA9e.
+
+Pour la préparation de l\x27environnement et la compilation, reportez-vous au fichier [README.md](../README.md).
